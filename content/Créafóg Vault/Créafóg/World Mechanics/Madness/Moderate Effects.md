@@ -1,0 +1,5 @@
+0.25≤Ψ<0.5
+- Behavioral Shifts: Irritability, mood swings, and social withdrawal become evident. Characters may have disadvantage on Charisma checks and any attempts to lie or deceive, as their grasp on reality weakens.
+- Phasing Moments: Brief, uncontrollable glimpses into the Ethereal Plane or involuntary minor phasing, causing physical objects to slip through their hands or making them momentarily incorporeal.
+- ~~Triggered effect: when [insert trigger happens], the creature makes a Wisdom saving throw or behaves as though under the Phantasmal Killer spell. Additionally, a creature that fails this roll is under the effects of a [___] spell for X hour.~~
+- Echoes of the past: Tapping into the temporal essence of their surroundings, the character can once per long rest glimpse into the past of their current location, witnessing events that occurred up to a year per character level ago. This could provide invaluable information, reveal hidden treasures, or uncover secrets. The flood of temporal information overwhelms the character, leaving them with a headache that imposes disadvantage on Intelligence and Wisdom checks until the end of their next long rest.

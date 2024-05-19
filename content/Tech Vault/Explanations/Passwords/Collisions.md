@@ -1,0 +1,1 @@
+When two sets of plaintext can produce the same hash.

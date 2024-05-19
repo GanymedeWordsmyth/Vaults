@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Background",
+    "feature": "Feature Name",
+    "feature_desc": "A description of the feature.",
+    "skills_count_choose": 0,
+    "skills": ["Insight","Religion"]
+  }
+]

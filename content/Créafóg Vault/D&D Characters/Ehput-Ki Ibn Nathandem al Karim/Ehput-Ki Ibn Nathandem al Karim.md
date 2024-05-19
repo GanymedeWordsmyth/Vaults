@@ -1,0 +1,8 @@
+## Expectation
+Okay so here is what I'm thinking about how the world treats Ki: (Note: the level numbers are predictions. These events may happen before or after the listed levels)
+	At first, anyone that knows him or knows of him, knows him as "that weird, eccentric old man." Yes, old man...his age changes as well. This change is imperceptible to himself as well as those that the curse grabs with him, they just see him as always being that age (aka, I'm not going to bring it up, but I'm hoping that when those around them start calling him old, the others will join in the mockery at first and then slowly realize what is happening).
+	Then, Ki will start doing Ki things and binding others to his will. This will likely start being noticeable by level 6 or 7, and more widely noticeable by the end of level 7 and into level 8, when the party starts affecting more of the world around them. Him being an issue will likely be a shock to those that knew him, some not even believing the "rumors."
+	When he becomes level 9 or 10 is when he will become a real big pain in the ass for the more powerful people in the world. This is when assassins will likely be sent after Ki.
+	It is my hope that this slowly turns into a Light Yagami x L style struggle.
+	Post level 10, it is my hope that the more powerful people of the world will not only have no choice but to notice him, but will also want him dead and he will have to contend with those people trying to kill him.
+	Then this is where the curse becomes very fucked up. With his death, the curse grabs him and moves him to the next world where he "wakes up" as though from a dream where you witness your own death. Oh boy, wtf have I done...

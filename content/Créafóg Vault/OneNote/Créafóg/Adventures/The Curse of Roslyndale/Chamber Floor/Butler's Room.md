@@ -1,0 +1,1 @@
+During the gap between Mr Lackman dying and the children dying, Mistress Lackman brought the butler into the larger room by the staircase for piece of mind and as a means of defense should anything have happened.

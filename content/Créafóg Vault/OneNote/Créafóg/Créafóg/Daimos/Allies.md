@@ -1,0 +1,1 @@
+People that originally helped free the humans and have guided and taught them since the sanctuaries began. These people are the most likely to help

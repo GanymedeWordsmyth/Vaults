@@ -1,0 +1,1 @@
+It's well known by the monks that when one achieves true peace there flesh will become bronze. This encases the spirit, keeping it safe from outer spiritual influences. Allowing the monk to remain in eternal true peace.

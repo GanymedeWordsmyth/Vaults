@@ -1,0 +1,1 @@
+This region is covered in snow. The further north you go, the more snow you'll encounter year round

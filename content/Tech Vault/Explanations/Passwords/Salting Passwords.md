@@ -1,0 +1,1 @@
+Effective against brute-forcing hashes, a salt is a random piece of data added to the plaintext before hashing it. This inc the computation time but does not prevent brute-forcing altogether.

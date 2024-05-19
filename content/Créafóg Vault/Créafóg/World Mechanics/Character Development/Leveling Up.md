@@ -1,0 +1,3 @@
+Instead of the classic experience point type of level that encourages murder hobo tendencies or the entirely arbitrary milestone leveling system, I introduce my version of leveling: the character development style system.
+This leveling system is tied directly to the amount of sessions completed. Advancing to the next level requires completing a number of sessions equal to a PCs current level i.e. getting to fifth level requires completing 4 sessions.
+However, players can reduce this time by handing in earned downtime tokens. For levels 2-5, each reduction costs 10 tokens, 6-10 costs 15 tokens, 11-15 costs 20, and finally 16-20 costs 25.

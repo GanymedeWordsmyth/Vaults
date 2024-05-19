@@ -1,0 +1,19 @@
+Roll a d# to see how many PC's have nightmares
+ 
+Then a d# to see who has the nightmares.  
+Those without nightmares have a restless sleep.  
+*# is the number of players playing
+ 
+Roll a d6 for each PC to see which nightmare they have
+ 
+1 > You don't necessarily have any dream in particular, just a restless night that leaves you feeling weary and drained in the morning.
+ 
+2 > You wander hopelessly lost through a narrow corridor. You observe something odd about the sharp twisting of the passageways as you walk. You can't quite place it, but it is rather unnerving. Roving desperately through this endless maze, you notice out of the corners of your eyes dark shadows that seem to move and reach out to you, vanishing as you try to focus on them. You wake up feeling as though you and the others are being watched by something dangerous. Something biding its time.
+ 
+3 > You're sat in the middle of pitch black darkness. You observe no walls. You can't tell how high the ceiling. All you see is the terrifying emptiness of the void. Bound and unable to move, you sit apprehensively on the floor. A small buzzing sound hums in the distance growing louder and more distinct. You listen to the noise attempting to identify it as a deafening howl echoes through the hollow nothingness. The sheer volume of the two are maddeningly overwhelming. In an instant the howling and the buzzing both cease. After a few uneasy moments in the dark, oily tentacles slowly reach toward you caressing your sides. You wake up slowly feeling as though there is something out there in the dark depths of the cavern -- something even worse than your drow captors.
+ 
+4 > You're home following your daily routine when you start to feel a small pain on your left shoulder. You scratch your shoulder and feel a small blister that must have come from one of the chores. Thinking nothing of it, you resume your task taking you past a mirror you haven't seen before. Curious about the mirror, you observe it trying to figure out where it came from. As you peer into the mirror, however, a cold chill runs down your spine as you notice that the small blister on your shoulder has grown significantly. Terror starts to overtake you as the pustule turns into large festering wound that spreads all over your body. The ulcers start to bubble, boil, and burst into a large cloud of spores with a loud pop that wakes you gasping for air. You stare out of the cell. It felt so real. You can't believe it was just a dream.
+ 
+5 > As you lie in bed, you start to feel something crawling on your chest. Since your in a dungeon, you assume it's just a fly so with your eyes closed you swat it away, trying to continue your sleeping. As you roll over to your side you suddenly feel a sharp pain coming from it. Sitting up you see a pool of blood as you realize the pain was a bubbling boil that burst and maggots start to envelop your entire body. You wake startled in a puddle of sweat. Grabbing at your side, you question how such a real feeling can be a simple dream.
+ 
+6 > Your late for work for the third time this month. The boss is not happy and you fear you'll lose your job. Your stomach hurts like crazy, but it's too late to take off or find someone to cover you. As you walk over, you vomit once. Hard. You become dizzy and lethargic but your fear of losing your income overwhelms your better judgement to go home. Your stomach bloats bigger as you approach your work, but you push through anyways. When you arrive, your boss starts yelling at you and threatening to dock your pay by an entire shilling! At this point the pain in your stomach is unbearable as it explodes open unleashing a swarm of beetles that converges over you and begins to eat you alive. You wake up screaming, heart pounding, and brushing off your body trying to get them off as you realize it was just a dream.

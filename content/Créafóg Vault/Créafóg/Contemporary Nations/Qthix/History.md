@@ -1,0 +1,1 @@
+A small island that, like Vietnam, was able to bulk at the invasions from other races using guerilla tactics. No one from Qthix was ever enslaved or bred.

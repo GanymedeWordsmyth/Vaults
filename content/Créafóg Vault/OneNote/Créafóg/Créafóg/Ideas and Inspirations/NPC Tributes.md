@@ -1,0 +1,2 @@
+Dr Usama Riaz - [https://www.upworthy.com/dr-usama-riaz-is-a-true-hero-in-fight-against-covid-19](https://www.upworthy.com/dr-usama-riaz-is-a-true-hero-in-fight-against-covid-19)  
+Wyatt Ferris - [http://jennerak.blogspot.com/2017/11/in-memoriam-wyatt-ferris-fellow-gamer.html](http://jennerak.blogspot.com/2017/11/in-memoriam-wyatt-ferris-fellow-gamer.html)

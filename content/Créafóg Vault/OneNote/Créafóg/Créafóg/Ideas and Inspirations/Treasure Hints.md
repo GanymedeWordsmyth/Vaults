@@ -1,0 +1,1 @@
+It could be the title of a poem. If the whole poem is completed and all the scattered parts found, it hints at the location of a legendary bard's tomb, where his magical items still remain to this day. The tomb can be cleared using the poem so regular intruders die along the way, but those with the poem can make it to the end.

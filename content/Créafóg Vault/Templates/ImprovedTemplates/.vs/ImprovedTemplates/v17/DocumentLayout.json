@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\rpg-cards.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\classes.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:descriptive-import-templates\\classes.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\spells.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:descriptive-import-templates\\spells.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\backgrounds.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:descriptive-import-templates\\backgrounds.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\subclasses.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:descriptive-import-templates\\subclasses.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\races.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:descriptive-import-templates\\races.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "rpg-cards.json",
+              "DocumentMoniker": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\rpg-cards.json",
+              "RelativeDocumentMoniker": "..\\rpg-cards.json",
+              "ToolTip": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\rpg-cards.json",
+              "RelativeToolTip": "..\\rpg-cards.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-12T16:13:18.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "classes.json",
+              "DocumentMoniker": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\classes.json",
+              "RelativeDocumentMoniker": "descriptive-import-templates\\classes.json",
+              "ToolTip": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\classes.json",
+              "RelativeToolTip": "descriptive-import-templates\\classes.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-12T16:11:06.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "spells.json",
+              "DocumentMoniker": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\spells.json",
+              "RelativeDocumentMoniker": "descriptive-import-templates\\spells.json",
+              "ToolTip": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\spells.json",
+              "RelativeToolTip": "descriptive-import-templates\\spells.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-12T16:09:47.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "races.json",
+              "DocumentMoniker": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\races.json",
+              "RelativeDocumentMoniker": "descriptive-import-templates\\races.json",
+              "ToolTip": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\races.json",
+              "RelativeToolTip": "descriptive-import-templates\\races.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-12T16:10:29.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "backgrounds.json",
+              "DocumentMoniker": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\backgrounds.json",
+              "RelativeDocumentMoniker": "descriptive-import-templates\\backgrounds.json",
+              "ToolTip": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\backgrounds.json",
+              "RelativeToolTip": "descriptive-import-templates\\backgrounds.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-12T16:10:29.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "subclasses.json",
+              "DocumentMoniker": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\subclasses.json",
+              "RelativeDocumentMoniker": "descriptive-import-templates\\subclasses.json",
+              "ToolTip": "G:\\My Drive\\Vaults\\Cr\u00E9af\u00F3g Vault\\Templates\\ImprovedTemplates\\descriptive-import-templates\\subclasses.json",
+              "RelativeToolTip": "descriptive-import-templates\\subclasses.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-12T16:10:29.241Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

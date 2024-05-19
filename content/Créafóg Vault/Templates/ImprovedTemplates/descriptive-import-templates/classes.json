@@ -1,0 +1,1365 @@
+[
+  {
+    "name": "Generic Class (with full spells)",
+    "hit_die": 8,
+    "combat_resource": null,
+    "skills_count_choose": 2,
+    "skills": [
+      "Acrobatics",
+      "Animal Handling",
+      "Arcana", "Athletics",
+      "Deception",
+      "History",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Religion",
+      "Sleight of Hand",
+      "Stealth",
+      "Survival"
+    ],
+    "saving_throws": [
+      "DEX",
+      "INT"
+    ],
+    "level_for_subclass": 3,
+    "levels_for_asi_bonuses": [
+      [4,8,12,16,19]
+    ],
+    "class_features": [
+      {
+        "name": "Level 1 Feature",
+        "desc": "During your class training you learned several specialized abilities (called 'features', to separate them from Ability Scores).",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 2",
+        "desc": "Beginning at 1st level, you have a number of features from your class training.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 3",
+        "desc": "At 1st level, you gain several features based on your class. You get even more at higher levels.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 4",
+        "desc": "Sometimes, you choose your subclass at level 1, and this subclass then gives you one or more features immediately, as well as several more at various higher levels.",
+        "level": 1
+      },
+      {
+        "name": "Level 2 Feature",
+        "desc": "Starting at 2nd level, you gain additional abilities from your class. Some classes may gain more than one feature, while others may only gain new spells and spell slots.",
+        "level": 2
+      },
+      {
+        "name": "Level 3 Feature: Archetype Choice",
+        "desc": "At 3rd level (for the majority of classes, anyway), you choose an archetype that you emulate in the exercise of your class abilities. Your archetype choice grants you features at 3rd level and then again at 6th, 10th, and 14th level.",
+        "level": 3
+      },
+      {
+        "name": "Ability Score Improvement",
+        "desc": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature.",
+        "level": 4
+      },
+      {
+        "name": "Level 5 Feature",
+        "desc": "Starting at 5th level, you gain another class feature. Some classes may only gain new spells and spell slots, while others may gain more than one feature.",
+        "level": 5
+      },
+      {
+        "name": "Level 7 Feature",
+        "desc": "Sometimes a class feature will be repeated at a later level, either as an improvement on an earlier ability (such as an increased bonus) or an expansion of its capabilities (such as the Rogue's Expertise or the Fighter's Extra Attack).",
+        "level": 7
+      },
+      {
+        "name": "Level 8 Feature: ASI",
+        "desc": "Most classes don't get a new feature at level 8, but they do get an ASI. And new spells, for (some of) the spellcasting classes.",
+        "level": 8
+      },
+      {
+        "name": "Level 9 Feature",
+        "desc": "Beginning at 9th level, you get ... another class feature! Sometimes it's just more spells and new spell slots, though.",
+        "level": 9
+      },
+      {
+        "name": "Level 11 Feature",
+        "desc": "By 11th level, you've learned even more cool things from your class. Or at least, learned new spells and figured out how to optimize your spellcasting so you can cast more spells per day.",
+        "level": 11
+      },
+      {
+        "name": "Level 12 Feature: ASI",
+        "desc": "As at level 8, most classes just get an ASI as their Level 12 Class Feature. And spell-stuff, for the spellcasting classes.",
+        "level": 12
+      },
+      {
+        "name": "Level 13 Feature",
+        "desc": "At level 13, I'm starting to run out of different ways to say 'you get *another* class feature! Except it could just be more spell-stuff.' At least I'm more than halfway done...",
+        "level": 13
+      },
+      {
+        "name": "Level 15 Feature",
+        "desc": "Starting at 15th level, you get ... ANOTHER FEATURE, and (if you're a spellcaster) MORE SPELLS!",
+        "level": 15
+      },
+      {
+        "name": "Level 16 Feature: ASI",
+        "desc": "Um, I'm still running out of descriptions...",
+        "level": 16
+      },
+      {
+        "name": "Level 17 Feature",
+        "desc": "By 17th level, you have acquired yet another class feature, and perhaps more spell-stuff (if you're a spellcaster).",
+        "level": 17
+      },
+      {
+        "name": "Level 18 Feature",
+        "desc": "Beginning at 18th level, you gain another Class Feature. How many of these do you get, anyway?",
+        "level": 18
+      },
+      {
+        "name": "Level 19 Feature: ASI",
+        "desc": "Finally, the last ASI you gain. Only one more level to go...unless your GM is ok with one or more of the available 'Epic Level' rules available, or has decided to make up their own.",
+        "level": 19
+      },
+      {
+        "name": "Capstone Feature",
+        "desc": "At 20th level, you have reached the end of normal character progression. Congratulations, here's a cool feature related to your chosen class's stereotypical theme! Acutally, some of these 'capstone features' are pretty cool, at least by description. Too bad it's hard to find a campaign where a character who started at level 1 actually gets to use their capstone ability. Most games that reach this level either start at a higher level or end up killing off the characters who started at level one before they get this far. Or the character decided to multiclass, and never gets any of their classes' capstone features.",
+        "level": 20
+      }
+    ],
+    "levels": [
+      {
+        "number": 1,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [2,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 2,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [3,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 3,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [4,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 4,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [4,3,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 5,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 6,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,3,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 7,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,3,1,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 8,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,3,2,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 9,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,1,0,0,0,0]
+        ]
+      },
+      {
+        "number": 10,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,2,0,0,0,0]
+        ]
+      },
+      {
+        "number": 11,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,2,1,0,0,0]
+        ]
+      },
+      {
+        "number": 12,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,2,1,0,0,0]
+        ]
+      },
+      {
+        "number": 13,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,0,0]
+        ]
+      },
+      {
+        "number": 14,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,0,0]
+        ]
+      },
+      {
+        "number": 15,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,1,0]
+        ]
+      },
+      {
+        "number": 16,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,1,0]
+        ]
+      },
+      {
+        "number": 17,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,1,1]
+        ]
+      },
+      {
+        "number": 18,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,3,1,1,1,1]
+        ]
+      },
+      {
+        "number": 19,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,3,2,1,1,1]
+        ]
+      },
+      {
+        "number": 20,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,3,2,2,1,1]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Martial Class",
+    "hit_die": 8,
+    "combat_resource": null,
+    "skills_count_choose": 3,
+    "skills": [
+      "Acrobatics",
+      "Athletics",
+      "Deception",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "saving_throws": [
+      "DEX",
+      "INT"
+    ],
+    "level_for_subclass": 3,
+    "levels_for_asi_bonuses": [
+      [4,8,12,16,19]
+    ],
+    "class_features": [
+      {
+        "name": "Level 1 Feature",
+        "desc": "During your class training you learned several specialized abilities (called 'features', to separate them from Ability Scores).",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 2",
+        "desc": "Beginning at 1st level, you have a number of features from your class training.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 3",
+        "desc": "At 1st level, you gain several features based on your class. You get even more at higher levels.",
+        "level": 1
+      },
+      {
+        "name": "Level 2 Feature",
+        "desc": "Starting at 2nd level, you gain additional abilities from your class. Some classes may gain more than one feature, while others may only gain new spells and spell slots.",
+        "level": 2
+      },
+      {
+        "name": "Level 3 Feature: Archetype Choice",
+        "desc": "At 3rd level (for the majority of classes, anyway), you choose an archetype that you emulate in the exercise of your class abilities. Your archetype choice grants you features at 3rd level and then again at 6th, 10th, and 14th level.",
+        "level": 3
+      },
+      {
+        "name": "Ability Score Improvement",
+        "desc": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature.",
+        "level": 4
+      },
+      {
+        "name": "Level 5 Feature",
+        "desc": "Starting at 5th level, you gain another class feature. Some classes may only gain new spells and spell slots, while others may gain more than one feature.",
+        "level": 5
+      },
+      {
+        "name": "Level 7 Feature",
+        "desc": "Beginning at 7th level, you get ... another class feature! Sometimes it's just more spells and new spell slots, though.",
+        "level": 7
+      },
+      {
+        "name": "Level 8 Feature: ASI",
+        "desc": "Most classes don't get a new feature at level 8, but they do get an ASI. And new spells, for (some of) the spellcasting classes.",
+        "level": 8
+      },
+      {
+        "name": "Level 9 Feature",
+        "desc": "Sometimes a class feature will be repeated at a later level, either as an improvement on an earlier ability (such as an increased bonus) or an expansion of its capabilities (such as the Rogue's Expertise or the Fighter's Extra Attack).",
+        "level": 9
+      },
+      {
+        "name": "Level 11 Feature",
+        "desc": "By 11th level, you've learned even more cool things from your class. Or at least, learned new spells and figured out how to optimize your spellcasting so you can cast more spells per day.",
+        "level": 11
+      },
+      {
+        "name": "Level 12 Feature: ASI",
+        "desc": "As at level 8, most classes just get an ASI as their Level 12 Class Feature. And spell-stuff, for the spellcasting classes.",
+        "level": 12
+      },
+      {
+        "name": "Level 13 Feature",
+        "desc": "At level 13, I'm starting to run out of different ways to say 'you get *another* class feature! Except it could just be more spell-stuff.' At least I'm over halfway done...",
+        "level": 13
+      },
+      {
+        "name": "Level 15 Feature",
+        "desc": "By 15th level, you have acquired yet another class feature, and perhaps more spell-stuff (if you're a spellcaster).",
+        "level": 15
+      },
+      {
+        "name": "Level 16 Feature: ASI",
+        "desc": "Um, I'm still running out of descriptions...",
+        "level": 16
+      },
+      {
+        "name": "Level 17 Feature",
+        "desc": "Starting at 17th level, you get ... ANOTHER FEATURE, and (if you're a spellcaster) MORE SPELLS!",
+        "level": 17
+      },
+      {
+        "name": "Level 18 Feature",
+        "desc": "Beginning at 18th level, you gain another Class Feature. How many of these do you get, anyway?",
+        "level": 18
+      },
+      {
+        "name": "Level 19 Feature: ASI",
+        "desc": "Finally, the last ASI you gain. Only one more level to go...unless your GM is ok with one or more of the available 'Epic Level' rules available, or has decided to make up their own.",
+        "level": 19
+      },
+      {
+        "name": "Capstone Feature",
+        "desc": "At 20th level, you have reached the end of normal character progression. Congratulations, here's a cool feature related to your chosen class's stereotypical theme! Acutally, some of these 'capstone features' are pretty cool, at least by description. Too bad it's hard to find a campaign where a character who started at level 1 actually gets to use their capstone ability. Most games that reach this level either start at a higher level or end up killing off the characters who started at level one before they get this far. Or the character decided to multiclass, and never gets any of their classes' capstone features.",
+        "level": 20
+      }
+    ],
+    "levels": [
+      {
+        "number": 1,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [0,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 2,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [0,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 3,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [2,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 4,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [3,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 5,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [3,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 6,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [3,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 7,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 8,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 9,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 10,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 11,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 12,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 13,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 14,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 15,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 16,
+        "prof_bonus": 5,
+        "spells_levels": [
+          4,3,3,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 17,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 18,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 19,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,1,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 20,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,1,0,0,0,0,0]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Half-Caster Class",
+    "hit_die": 8,
+    "combat_resource": null,
+    "skills_count_choose": 3,
+    "skills": [
+      "Acrobatics",
+      "Athletics",
+      "Deception",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "saving_throws": [
+      "DEX",
+      "INT"
+    ],
+    "level_for_subclass": 3,
+    "levels_for_asi_bonuses": [
+      [4,8,12,16,19]
+    ],
+    "class_features": [
+      {
+        "name": "Level 1 Feature",
+        "desc": "During your class training you learned several specialized abilities (called 'features', to separate them from Ability Scores).",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 2",
+        "desc": "Beginning at 1st level, you have a number of features from your class training.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 3",
+        "desc": "At 1st level, you gain several features based on your class. You get even more at higher levels.",
+        "level": 1
+      },
+      {
+        "name": "Level 2 Feature",
+        "desc": "Starting at 2nd level, you gain additional abilities from your class. Some classes may gain more than one feature, while others may only gain new spells and spell slots.",
+        "level": 2
+      },
+      {
+        "name": "Level 3 Feature: Archetype Choice",
+        "desc": "At 3rd level (for the majority of classes, anyway), you choose an archetype that you emulate in the exercise of your class abilities. Your archetype choice grants you features at 3rd level and then again at 7th, 11th, and 15th level.",
+        "level": 3
+      },
+      {
+        "name": "Ability Score Improvement",
+        "desc": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature.",
+        "level": 4
+      },
+      {
+        "name": "Level 5 Feature",
+        "desc": "Starting at 5th level, you gain another class feature. Some classes may only gain new spells and spell slots, while others may gain more than one feature.",
+        "level": 5
+      },
+      {
+        "name": "Level 6 Feature",
+        "desc": "Sometimes a class feature will be repeated at a later level, either as an improvement on an earlier ability (such as an increased bonus) or an expansion of its capabilities (such as the Rogue's Expertise or the Fighter's Extra Attack).",
+        "level": 6
+      },
+      {
+        "name": "Level 8 Feature: ASI",
+        "desc": "Most classes don't get a new feature at level 8, but they do get an ASI. And new spells, for (some of) the spellcasting classes.",
+        "level": 8
+      },
+      {
+        "name": "Level 9 Feature",
+        "desc": "Beginning at 9th level, you get ... another class feature! Sometimes it's just more spells and new spell slots, though.",
+        "level": 9
+      },
+      {
+        "name": "Level 10 Feature",
+        "desc": "At level 10, I'm starting to run out of different ways to say 'you get *another* class feature! Except it could just be more spell-stuff.' And I'm only about halfway done, too...",
+        "level": 10
+      },
+      {
+        "name": "Level 12 Feature: ASI",
+        "desc": "As at level 8, most classes just get an ASI as their Level 12 Class Feature. And spell-stuff, for the spellcasting classes.",
+        "level": 12
+      },
+      {
+        "name": "Level 13 Feature",
+        "desc": "By 13th level, you've learned even more cool things from your class. Or at least, learned new spells and figured out how to optimize your spellcasting so you can cast more spells per day.",
+        "level": 13
+      },
+      {
+        "name": "Level 14 Feature",
+        "desc": "Starting at 14th level, you get ... ANOTHER FEATURE, and (if you're a spellcaster) MORE SPELLS!",
+        "level": 14
+      },
+      {
+        "name": "Level 16 Feature: ASI",
+        "desc": "Um, I'm still running out of descriptions...",
+        "level": 16
+      },
+      {
+        "name": "Level 17 Feature",
+        "desc": "By 17th level, you have acquired yet another class feature, and perhaps more spell-stuff (if you're a spellcaster).",
+        "level": 17
+      },
+      {
+        "name": "Level 18 Feature",
+        "desc": "Beginning at 18th level, you gain another Class Feature. How many of these do you get, anyway?",
+        "level": 18
+      },
+      {
+        "name": "Level 19 Feature: ASI",
+        "desc": "Finally, the last ASI you gain. Only one more level to go...unless your GM is ok with one or more of the available 'Epic Level' rules available, or has decided to make up their own.",
+        "level": 19
+      },
+      {
+        "name": "Capstone Feature",
+        "desc": "At 20th level, you have reached the end of normal character progression. Congratulations, here's a cool feature related to your chosen class's stereotypical theme! Acutally, some of these 'capstone features' are pretty cool, at least by description. Too bad it's hard to find a campaign where a character who started at level 1 actually gets to use their capstone ability. Most games that reach this level either start at a higher level or end up killing off the characters who started at level one before they get this far. Or the character decided to multiclass, and never gets any of their classes' capstone features.",
+        "level": 20
+      }
+    ],
+    "levels": [
+      {
+        "number": 1,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [0,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 2,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [2,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 3,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [3,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 4,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [3,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 5,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 6,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 7,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 8,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 9,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 10,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 11,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 12,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 13,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,1,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 14,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,1,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 15,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,2,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 16,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,2,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 17,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,1,0,0,0,0]
+        ]
+      },
+      {
+        "number": 18,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,1,0,0,0,0]
+        ]
+      },
+      {
+        "number": 19,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,2,0,0,0,0]
+        ]
+      },
+      {
+        "number": 20,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,2,0,0,0,0]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Full-Caster Class",
+    "hit_die": 8,
+    "combat_resource": null,
+    "skills_count_choose": 2,
+    "skills": [
+      "Acrobatics",
+      "Animal Handling",
+      "Arcana", "Athletics",
+      "Deception",
+      "History",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Religion",
+      "Sleight of Hand",
+      "Stealth",
+      "Survival"
+    ],
+    "saving_throws": [
+      "DEX",
+      "INT"
+    ],
+    "level_for_subclass": 2,
+    "levels_for_asi_bonuses": [
+      [4,8,12,16,19]
+    ],
+    "class_features": [
+      {
+        "name": "Level 1 Feature",
+        "desc": "During your class training you learned several specialized abilities (called 'features', to separate them from Ability Scores).",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 2",
+        "desc": "Beginning at 1st level, you have a number of features from your class training.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 3",
+        "desc": "At 1st level, you gain several features based on your class. You get even more at higher levels.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 4",
+        "desc": "Sometimes, you choose your subclass at level 1, and this subclass then gives you one or more features immediately, as well as several more at various higher levels.",
+        "level": 1
+      },
+      {
+        "name": "Level 2 Feature: Archetype Choice",
+        "desc": "At 2nd level, you choose an archetype that you emulate in the exercise of your class abilities. Your archetype choice grants you features at 2nd level and then again at 6th, 9th, and 14th level.",
+        "level": 2
+      },
+      {
+        "name": "Level 3 Feature",
+        "desc": "Starting at 3rd level, you gain additional abilities from your class. Some classes may gain more than one feature, while others may only gain new spells and spell slots.",
+        "level": 3
+      },
+      {
+        "name": "Ability Score Improvement",
+        "desc": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature.",
+        "level": 4
+      },
+      {
+        "name": "Level 5 Feature",
+        "desc": "Starting at 5th level, you gain another class feature. Some classes may only gain new spells and spell slots, while others may gain more than one feature.",
+        "level": 5
+      },
+      {
+        "name": "Level 7 Feature",
+        "desc": "Sometimes a class feature will be repeated at a later level, either as an improvement on an earlier ability (such as an increased bonus) or an expansion of its capabilities (such as the Rogue's Expertise or the Fighter's Extra Attack).",
+        "level": 7
+      },
+      {
+        "name": "Level 8 Feature: ASI",
+        "desc": "Most classes don't get a new feature at level 8, but they do get an ASI. And new spells, for (some of) the spellcasting classes.",
+        "level": 8
+      },
+      {
+        "name": "Level 10 Feature",
+        "desc": "Beginning at 10th level, you get ... another class feature! Sometimes it's just more spells and new spell slots, though.",
+        "level": 10
+      },
+      {
+        "name": "Level 11 Feature",
+        "desc": "By 11th level, you've learned even more cool things from your class. Or at least, learned new spells and figured out how to optimize your spellcasting so you can cast more spells per day.",
+        "level": 11
+      },
+      {
+        "name": "Level 12 Feature: ASI",
+        "desc": "As at level 8, most classes just get an ASI as their Level 12 Class Feature. And spell-stuff, for the spellcasting classes.",
+        "level": 12
+      },
+      {
+        "name": "Level 13 Feature",
+        "desc": "At level 13, I'm starting to run out of different ways to say 'you get *another* class feature! Except it could just be more spell-stuff.' At least I'm more than halfway done...",
+        "level": 13
+      },
+      {
+        "name": "Level 15 Feature",
+        "desc": "Starting at 15th level, you get ... ANOTHER FEATURE, and (if you're a spellcaster) MORE SPELLS!",
+        "level": 15
+      },
+      {
+        "name": "Level 16 Feature: ASI",
+        "desc": "Um, I'm still running out of descriptions...",
+        "level": 16
+      },
+      {
+        "name": "Level 17 Feature",
+        "desc": "By 17th level, you have acquired yet another class feature, and perhaps more spell-stuff (if you're a spellcaster).",
+        "level": 17
+      },
+      {
+        "name": "Level 18 Feature",
+        "desc": "Beginning at 18th level, you gain another Class Feature. How many of these do you get, anyway?",
+        "level": 18
+      },
+      {
+        "name": "Level 19 Feature: ASI",
+        "desc": "Finally, the last ASI you gain. Only one more level to go...unless your GM is ok with one or more of the available 'Epic Level' rules available, or has decided to make up their own.",
+        "level": 19
+      },
+      {
+        "name": "Capstone Feature",
+        "desc": "At 20th level, you have reached the end of normal character progression. Congratulations, here's a cool feature related to your chosen class's stereotypical theme! Acutally, some of these 'capstone features' are pretty cool, at least by description. Too bad it's hard to find a campaign where a character who started at level 1 actually gets to use their capstone ability. Most games that reach this level either start at a higher level or end up killing off the characters who started at level one before they get this far. Or the character decided to multiclass, and never gets any of their classes' capstone features.",
+        "level": 20
+      }
+    ],
+    "levels": [
+      {
+        "number": 1,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [2,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 2,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [3,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 3,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [4,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 4,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [4,3,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 5,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 6,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,3,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 7,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,3,1,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 8,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [4,3,3,2,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 9,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,1,0,0,0,0]
+        ]
+      },
+      {
+        "number": 10,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,2,0,0,0,0]
+        ]
+      },
+      {
+        "number": 11,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,2,1,0,0,0]
+        ]
+      },
+      {
+        "number": 12,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [4,3,3,3,2,1,0,0,0]
+        ]
+      },
+      {
+        "number": 13,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,0,0]
+        ]
+      },
+      {
+        "number": 14,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,0,0]
+        ]
+      },
+      {
+        "number": 15,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,1,0]
+        ]
+      },
+      {
+        "number": 16,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,1,0]
+        ]
+      },
+      {
+        "number": 17,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,2,1,1,1,1]
+        ]
+      },
+      {
+        "number": 18,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,3,1,1,1,1]
+        ]
+      },
+      {
+        "number": 19,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,3,2,1,1,1]
+        ]
+      },
+      {
+        "number": 20,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [4,3,3,3,3,2,2,1,1]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Warlock-Caster Class",
+    "hit_die": 8,
+    "combat_resource": null,
+    "skills_count_choose": 2,
+    "skills": [
+      "Acrobatics",
+      "Animal Handling",
+      "Arcana", "Athletics",
+      "Deception",
+      "History",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Religion",
+      "Sleight of Hand",
+      "Stealth",
+      "Survival"
+    ],
+    "saving_throws": [
+      "DEX",
+      "INT"
+    ],
+    "level_for_subclass": 2,
+    "levels_for_asi_bonuses": [
+      [4,8,12,16,19]
+    ],
+    "class_features": [
+      {
+        "name": "Level 1 Feature",
+        "desc": "During your class training you learned several specialized abilities (called 'features', to separate them from Ability Scores).",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 2",
+        "desc": "Beginning at 1st level, you have a number of features from your class training.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature 3",
+        "desc": "At 1st level, you gain several features based on your class. You get even more at higher levels.",
+        "level": 1
+      },
+      {
+        "name": "Level 1 Feature: Archetype Choice",
+        "desc": "At 1st level, you choose an archetype that you emulate in the exercise of your class abilities. Your archetype choice grants you features at st level and then again at 6th, 10th, and 14th level.",
+        "level": 1
+      },
+      {
+        "name": "Level 2 Feature: Archetype Choice",
+        "desc": "When you reach 2nd level, you gain the ability to do something cool based on your class. OK, some are more cool than others, but still. It's something you couldn't do at first level, isn't it?",
+        "level": 2
+      },
+      {
+        "name": "Level 3 Feature",
+        "desc": "Starting at 3rd level, you gain additional abilities from your class. Some classes may gain more than one feature, while others may only gain new spells and spell slots.",
+        "level": 3
+      },
+      {
+        "name": "Ability Score Improvement",
+        "desc": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature.",
+        "level": 4
+      },
+      {
+        "name": "Level 5 Feature",
+        "desc": "Starting at 5th level, you gain another class feature. Some classes may only gain new spells and spell slots, while others may gain more than one feature.",
+        "level": 5
+      },
+      {
+        "name": "Level 7 Feature",
+        "desc": "Sometimes a class feature will be repeated at a later level, either as an improvement on an earlier ability (such as an increased bonus) or an expansion of its capabilities (such as the Rogue's Expertise or the Fighter's Extra Attack).",
+        "level": 7
+      },
+      {
+        "name": "Level 8 Feature: ASI",
+        "desc": "Most classes don't get a new feature at level 8, but they do get an ASI. And new spells, for (some of) the spellcasting classes.",
+        "level": 8
+      },
+      {
+        "name": "Level 9 Feature",
+        "desc": "Beginning at 9th level, you get ... another class feature! Sometimes it's just more spells and new spell slots, though.",
+        "level": 9
+      },
+      {
+        "name": "Level 11 Feature",
+        "desc": "By 11th level, you've learned even more cool things from your class. Or at least, learned new spells and figured out how to optimize your spellcasting so you can cast more spells per day.",
+        "level": 11
+      },
+      {
+        "name": "Level 12 Feature: ASI",
+        "desc": "As at level 8, most classes just get an ASI as their Level 12 Class Feature. And spell-stuff, for the spellcasting classes.",
+        "level": 12
+      },
+      {
+        "name": "Level 13 Feature",
+        "desc": "At level 13, I'm starting to run out of different ways to say 'you get *another* class feature! Except it could just be more spell-stuff.' At least I'm more than halfway done...",
+        "level": 13
+      },
+      {
+        "name": "Level 15 Feature",
+        "desc": "Starting at 15th level, you get ... ANOTHER FEATURE, and (if you're a spellcaster) MORE SPELLS!",
+        "level": 15
+      },
+      {
+        "name": "Level 16 Feature: ASI",
+        "desc": "Um, I'm still running out of descriptions...",
+        "level": 16
+      },
+      {
+        "name": "Level 17 Feature",
+        "desc": "By 17th level, you have acquired yet another class feature, and perhaps more spell-stuff (if you're a spellcaster).",
+        "level": 17
+      },
+      {
+        "name": "Level 18 Feature",
+        "desc": "Beginning at 18th level, you gain another Class Feature. How many of these do you get, anyway?",
+        "level": 18
+      },
+      {
+        "name": "Level 19 Feature: ASI",
+        "desc": "Finally, the last ASI you gain. Only one more level to go...unless your GM is ok with one or more of the available 'Epic Level' rules available, or has decided to make up their own.",
+        "level": 19
+      },
+      {
+        "name": "Capstone Feature",
+        "desc": "At 20th level, you have reached the end of normal character progression. Congratulations, here's a cool feature related to your chosen class's stereotypical theme! Acutally, some of these 'capstone features' are pretty cool, at least by description. Too bad it's hard to find a campaign where a character who started at level 1 actually gets to use their capstone ability. Most games that reach this level either start at a higher level or end up killing off the characters who started at level one before they get this far. Or the character decided to multiclass, and never gets any of their classes' capstone features.",
+        "level": 20
+      }
+    ],
+    "levels": [
+      {
+        "number": 1,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [1,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 2,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [2,0,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 3,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [0,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 4,
+        "prof_bonus": 2,
+        "spells_levels": [
+          [0,2,0,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 5,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [0,0,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 6,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [0,0,2,0,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 7,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [0,0,0,2,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 8,
+        "prof_bonus": 3,
+        "spells_levels": [
+          [0,0,0,2,0,0,0,0,0]
+        ]
+      },
+      {
+        "number": 9,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [0,0,0,0,2,0,0,0,0]
+        ]
+      },
+      {
+        "number": 10,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [0,0,0,0,2,0,0,0,0]
+        ]
+      },
+      {
+        "number": 11,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [0,0,0,0,3,0,0,0,0]
+        ]
+      },
+      {
+        "number": 12,
+        "prof_bonus": 4,
+        "spells_levels": [
+          [0,0,0,0,3,0,0,0,0]
+        ]
+      },
+      {
+        "number": 13,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [0,0,0,0,3,0,0,0,0]
+        ]
+      },
+      {
+        "number": 14,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [0,0,0,0,3,0,0,0,0]
+        ]
+      },
+      {
+        "number": 15,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [0,0,0,0,3,0,0,0,0]
+        ]
+      },
+      {
+        "number": 16,
+        "prof_bonus": 5,
+        "spells_levels": [
+          [0,0,0,0,3,0,0,0,0]
+        ]
+      },
+      {
+        "number": 17,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [0,0,0,0,4,0,0,0,0]
+        ]
+      },
+      {
+        "number": 18,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [0,0,0,0,4,0,0,0,0]
+        ]
+      },
+      {
+        "number": 19,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [0,0,0,0,4,0,0,0,0]
+        ]
+      },
+      {
+        "number": 20,
+        "prof_bonus": 6,
+        "spells_levels": [
+          [0,0,0,0,4,0,0,0,0]
+        ]
+      }
+    ]
+  }
+]

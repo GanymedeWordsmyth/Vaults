@@ -1,0 +1,3 @@
+Driven mad by the death of _______, Urraim Sealgair (Or-im Shall-eh-garr), a powerful Paladin of the realm, fell from grace, killing everyone in his town. He then sold his soul to Plabàs and raised the town as undead minions, poisoning the surrounding area. The poison rotted all the once fertile land as it sank into the dead marshland that exists today. Now, Sealgair walks the marshes with wraiths and other undead baddies looking to extend his reach beyond that of Marwolaeth (Mar-wo-lithe). By doing this he is encroaching on the fey grounds of Callobre Forest, catching the attention of Fearthainne Solasta.
+
+Sealgair rides a mighty Nightmare Steed called ______

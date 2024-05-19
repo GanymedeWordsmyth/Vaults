@@ -1,0 +1,3 @@
+###### As played by Jess Staples
+Human urchin thief
+Rose was born and raised in Port Aldshore, scraping by with two parents who were self-proclaimed artists and did very little to bring in a steady income or keep food on the table. She learned to rely on her wits by scavenging through trash, picking pockets, and taking on some odd jobs smuggling and spying for shady characters. As she got older her skills got more refined and she even tends to take some freelance work from the local thieves' guild in the sewers.

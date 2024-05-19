@@ -1,0 +1,111 @@
+{
+	"fileType": "spells-sublist",
+	"siteVersion": "1.206.1",
+	"items": [
+		{
+			"h": "mage%20hand_phb"
+		},
+		{
+			"h": "prestidigitation_phb"
+		},
+		{
+			"h": "shape%20water_xge"
+		},
+		{
+			"h": "mold%20earth_xge"
+		},
+		{
+			"h": "feather%20fall_phb"
+		},
+		{
+			"h": "find%20familiar_phb"
+		},
+		{
+			"h": "fog%20cloud_phb"
+		},
+		{
+			"h": "grease_phb"
+		},
+		{
+			"h": "mage%20armor_phb"
+		},
+		{
+			"h": "protection%20from%20evil%20and%20good_phb"
+		},
+		{
+			"h": "shield_phb"
+		},
+		{
+			"h": "silvery%20barbs_scc"
+		},
+		{
+			"h": "alter%20self_phb"
+		},
+		{
+			"h": "arcane%20lock_phb"
+		},
+		{
+			"h": "borrowed%20knowledge_scc"
+		},
+		{
+			"h": "detect%20thoughts_phb"
+		},
+		{
+			"h": "flock%20of%20familiars_llk"
+		},
+		{
+			"h": "misty%20step_phb"
+		},
+		{
+			"h": "nystul's%20magic%20aura_phb"
+		},
+		{
+			"h": "rope%20trick_phb"
+		},
+		{
+			"h": "suggestion_phb"
+		},
+		{
+			"h": "web_phb"
+		},
+		{
+			"h": "animate%20dead_phb"
+		},
+		{
+			"h": "counterspell_phb"
+		},
+		{
+			"h": "magic%20circle_phb"
+		},
+		{
+			"h": "nondetection_phb"
+		},
+		{
+			"h": "sending_phb"
+		},
+		{
+			"h": "summon%20undead_tce"
+		},
+		{
+			"h": "conjure%20minor%20elementals_phb"
+		},
+		{
+			"h": "dimension%20door_phb"
+		},
+		{
+			"h": "fabricate_phb"
+		},
+		{
+			"h": "danse%20macabre_xge"
+		}
+	],
+	"sources": [
+		"PHB",
+		"XGE",
+		"SCC",
+		"LLK",
+		"TCE"
+	],
+	"name": "Ki",
+	"saveId": "a7c4355e-4c8a-4a0d-ba52-4945296c4522"
+}

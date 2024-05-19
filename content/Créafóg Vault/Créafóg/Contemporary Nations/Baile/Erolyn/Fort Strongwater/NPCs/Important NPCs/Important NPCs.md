@@ -1,0 +1,138 @@
+Old Notes:
+	Lord and Lady Dubh are elder elves who have not experienced their transcendence. Cedric is 457 and Mirna is 468. Contrary to what the rumors say, it was actually their parents fought at the battle for human freedom. They've tried to correct the rumors, but to no avail. So now they just allow them to persist as it really doesn't matter that much in the grand scheme of things.
+	 Lord Cedric Dubh
+		- Physical Description
+	       - Blue tinged silver hair
+	    - Sickly and pale
+		- Mannerisms
+	        - Charismatic, persuasive, born leader (Cha +4)
+		    - Uses flowery speech
+		    - Ponderous
+		    - Balance above all else
+		- Secrets/talents    
+		    - Protective of a valuable possession that recollects forbidden lore
+		    - Knows of the Streets and Mirna's involvement with them but is too wrapped up in his own business to get involved.
+	           - Will lie for Mirna
+		    - Came from the College of Glamor
+		    - Has a rare debilitating elven disease
+	 Lady Mirna Dubh (level 6 Bladesinger)
+		- Physical Description
+	        - Bald
+		    - Tall and lithe
+		- Mannerisms
+			- Possesses a war tainted mind and is plagued by fits of terrors during her days and nights. (PTSD)
+		    - Charismatic and persuasive (Cha +3)
+		    - Easily irritated
+		    - Believes in retribution
+		    - Loyal to her husband
+		- Secrets/talents
+	        - Susceptible to romance
+		    - Bladesinger
+		    - Knows Sylvan
+		    - Renegade of the Street of Smoke
+	 Cpt Bhaltaire Gall
+		- Physical Description
+	        - Large birthmark across his left eye
+		    - Powerful and strong as an ox
+		- Mannerisms
+	        - Clumsy and drops almost everything he carried
+			- Particularly baritone voice
+			- Very friendly, though boisterous and loud
+			- Respect and responsibility above all else
+			- Enjoys decadent pleasures
+		- Secrets/talents
+	        - Secretly out for revenge
+		    - Particularly great puzzle solver
+	 Scribe Aodh Ciar
+		- Physical Description
+	        - Covered in tattoos
+            - A very elegant quill made from the feather of an eagle and an exceptionally beautiful ink well on his right arm
+		    - Pale and sickly
+		- Mannerisms
+	        - Studious, learned, and inquisitive
+		    - Squints a lot, as one does when in need of glasses
+		    - Interacts honestly with others
+		    - Believes in the ideas of redemption. Anyone can be redeemed, though the worse the crime, the harder you have to work for it.
+		    - Loyal to Cpt Bhaltair [why?]
+		- Secrets/talents
+	        - Expert cook
+		    - Especially fearful of cats, especially big ones.
+	 Barber Cadwell MacLain
+		- Physical Description
+	        - One leg is shorter than the other, giving him a crooked posture. Upon closer inspection, the short leg is actually a crudely made false leg.
+		    - Surprisingly lithe and agile
+		- Mannerisms
+	        - Oblivious and absentminded
+		    - Taps fingers
+		    - Innocently rude
+		    - Believes in no limits
+		- Secrets/talents
+	        - Knows Sylvan
+		    - Coyote of the Street of Smoke
+		    - Has a powerful greed that he continuously fights to control
+		    - Dedicated to fulfilling a personal life goal
+	 Alchemist Cordelia Ualas
+		- Physical Description
+	        - Wears formal, clean clothes
+		    - Feeble, scrawny
+		- Mannerisms
+	        - Perceptive, spiritual, insightful
+		    - Prone to humming quietly
+		    - Quiet/soft spoken
+		    - Believes wholly in charity
+		- Secrets/talents
+	        - Skilled dancer
+		    - Quietly envies the freedom of adventurers
+	 Priest Moryn Glas
+		- Physical Description
+		    - One eye is green and the other is a pale yellow
+		- Mannerisms
+	        - Perceptive, spiritual, and insightful.
+		    - Boring and dull.
+		    - Tends to drone on and on.
+			- Constantly chews on finely crafted toothpicks. When it's not in his mouth, it's in his ear. When the toothpick is either lost or completely chewed through, he takes out a new one from a finely crafted glass toothpick case with a gunmetal filigree.
+		    - Very suspicious of everyone, especially new people.
+		    - Believes in creativity above all else
+		- Secrets/talents
+	        - Knows Sylvan
+		    - Fox of the Street of Smoke
+		    - Drawn to holy places and relics
+		    - He has a very colorful, very scandalous history
+	 Head Builder Gitta O'Connell
+		- Physical Description
+	        - Her nose has been broken and fixed multiple times over the course of her life.
+		    - She is hale and hardy
+		- Mannerisms
+			- clumsy and often drops and breaks things she holds
+		    - She is very soft spoken and often needs to be asked to repeat herself.
+		    - Gitta is a very curious and artistic soul, often staring into space whenever inspiration hits. Then brings out her sketch book and starts making notes.
+		    - She defends her freedom and independence furiously against any who attempt to chain her down.
+		    - Her mastery over her craft has left her rather arrogant in her claims. She knows she's the best there is and isn't afraid to say it.
+		- Secrets/talents
+	        - Her drawings and sketchbook are masterful works of art. Her mastery over structures combines the architecturally sound with the visually stunning.
+		    - She is easily captivated by romanticism.
+	 Master of Arms Bredon Creag
+		- Physical Description
+	        - With a long and braided beard that would rival any dwarf's, Master of Arms Bredon Creag is as sharp as a tack with a powerful build that would rival a goliath.
+		- Mannerisms
+	        - Absentminded when it comes to most matters.
+		    - Frequently uses the wrong words in a blustering tone
+		    - Holds tradition in high regard
+		- Secrets/talents    
+		    - With his militarily perfected memory, he can glimpse upon any battle strategy and portray it to any other that he desires.
+		    - **Protective of a valuable possession**
+		    - **Secret crime or misdeed**
+	 Left-Handed Hummingbird (Bird) of the Bright Cliffs
+		- Physical Description
+			- Leopard skinned fur with a cat face and feet
+		    - Wears flamboyant clothes
+		    - Scrawny body
+		- Mannerisms
+	        - Charismatic and persuasive
+		    - Uses flowery speech
+		    - Interacts with unabashed curiosity
+		    - Believes in beauty in all things
+		    - Captivated by the beauty of the world
+		- Secrets/talents
+	        - Unbelievably lucky
+		    - Enjoys decadent pleasures

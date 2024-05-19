@@ -1,0 +1,1 @@
+This is a template for any humanoid or beast that has become a living sand creature. These creatures are very similar to zombies, though with a few notable changes.

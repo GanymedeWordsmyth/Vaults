@@ -1,0 +1,6 @@
+- Every night there is a loud magical disruption that explodes outwards in a shockwave that rattles the whole town.
+- The disruption is likely what caused the town to be what it is today.
+- The team was attempting to identify the origin of the disruption when they noticed everyone looked like a walking corpse so they changed to investigating that when the corpses, all as one hive mind, attacked and killed the other 3.
+- Mole narrowly escape with his life
+- Romero was writing a scholarly paper on the topic of walking corpses, "hence why we stopped to study them". He was one of the corpses in the town square. In honor of his death, Mole calls the corpses Romero's Corpses.
+- Mole is too small to be able to carry full humanoids so he was unable to give them a proper burial and that can be a thing that pushes the party to the graveyard

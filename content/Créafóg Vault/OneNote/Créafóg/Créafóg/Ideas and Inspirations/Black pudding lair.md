@@ -1,0 +1,1 @@
+The party sees vast amounts of obsidian (describe the obsidian without saying the word "obsidian") before encountering the black pudding.

@@ -1,0 +1,4 @@
+`CUPP` stands for `Common User Password Profiler` and is used to create highly targeted and customized wordlists based on info gained from social engineering and [OSINT](https://osintframework.com/). People tend to use personal info while creating pws, such as phone numbers, pet names, birth dates, etc. CUPP takes this info and creates pws from them. These wordlists are mostly to gain access to social media accounts. Use the `-i` option to run in interactive mode. 
+Unknown fields can be left empty. 
+Also supports appending random chars and a "L337" mode, which uses combinations of letters and numbers in common words.
+CUPP can also fetch common names from various online db's using the `-l` option

@@ -1,0 +1,3 @@
+All taverns have a perpetual stew.  
+Roll a d100 every night the party orders it  
+On a 1, the tavern keepers weren't able to keep up with it correctly and there's a slight chance for food poisoning. Have everyone roll a DC13 Constitution saving throw. Those who succeed, their stomachs are upset, but they suffer no ill effects. Those who fail by less than 5 are poisoned for 1d6+1 hours. Those who fail by 5 or more roll another Constitution saving throw (DC16). On a success, they are poisoned for 1d8+3 hours and gain a level of exhaustion. On a failure, they are paralyzed and poisoned for 1d10+5 hours and gain 2 levels of exhaustion.

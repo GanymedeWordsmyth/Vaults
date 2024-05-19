@@ -1,0 +1,1 @@
+[https://www.reddit.com/r/DnD/comments/jofszp/oc_im_1400_hours_into_this_project_its_a_program/?utm_medium=android_app&utm_source=share](https://www.reddit.com/r/DnD/comments/jofszp/oc_im_1400_hours_into_this_project_its_a_program/?utm_medium=android_app&utm_source=share)

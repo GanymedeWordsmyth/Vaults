@@ -1,0 +1,8 @@
+![May be an image of text that says 'SWORD OF DEHYDRATION TION VERY RARE, CURSED. +3 SHORTSWORD, 106, SLASHING, 19-20 CRITICAL. -SPEED WEAPON: YOU CAN MAKE ONE EXTRA ATTACK WITH THIS WEAPON. -(CURSED) ALL WATER AND DRINK THAT PASSES YOUR LIPS TURNS TO SAND. EVERY DAY THE WIELDER SUFFERS: POINT OF EXHAUSTION WHICH CANNOT BE RECOVERED THROUGH NORMAL RESTING. -ON A 19-20 ATTACK ROLL, THIS SWORD DRAINS THE MOISTURE FROM THE TARGET, INFLICTING POINTS OF EXHUSTAION AND RESTORING 2 POINTS OF EXHAUSTION TO THE WIELDER.](Exported%20image%2020240412150325-0.jpeg)   
+Legendary, cursed
+
+- +3 scimitar, 1d6 slashing, 19-20 critical
+- Speed weapon: while attuned, the wielder can make one extra attack that they normally would otherwise be able to make as part of an attack action.
+- Improved critical 19-20: while attuned, the wielder of this weapon strikes a critical strike on a 19 or 20. When a critical hit lands with this weapon, the sword drains moisture from the target, inflicting 2 points of exhaustion to the target and restoring 2 points of exhaustion to the wielder.
+- Creator of living sand: any humanoid or beast slain by this weapon's improved critical feature rises one minute later as a living sand creature under the command of the wielder of the sword.
+- Cursed: all water and drink that passes the wielder's lips turns to sand. Every day, the wielder suffers 1 point of exhaustion which cannot be recovered through normal resting. A humanoid slain by this feature rises 1 hour later as a king sand creature under the DMs control. Any living sand creature created by the Creator of Living Sand feature remains under the King Sand creature's control.

@@ -1,0 +1,1 @@
+![Export Mode JPEG Grid O Lighting O Source Level Day - Ground Floor 64% c Oterlay Level Day - Second Floor Camera Filter None Grid Presets Custom Grid PPI output 4200 6000 in Folder finish Crop Export 300 ](Exported%20image%2020240412150017-0.png)

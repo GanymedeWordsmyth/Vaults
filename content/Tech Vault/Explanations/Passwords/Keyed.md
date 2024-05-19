@@ -1,0 +1,1 @@
+An additional secret is used to create a hash

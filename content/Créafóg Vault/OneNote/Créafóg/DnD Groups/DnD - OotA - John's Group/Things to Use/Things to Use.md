@@ -1,0 +1,1 @@
+These are ideas that I have to throw at my players that aren't in the module.

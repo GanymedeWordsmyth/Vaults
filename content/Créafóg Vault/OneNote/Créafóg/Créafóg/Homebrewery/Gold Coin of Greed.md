@@ -1,0 +1,3 @@
+The first time the coin returns, it doesn't multiply in _your_ inventory because the other half is now in possession of whoever you gave it to. No matter how many coins it has split into, if you give any number of these coins to a person not in possession of this coin, one of the coins will stay with that creature.
+ 
+Starts off as an unknown mint. Once a creature picks it up and handles it, the coin then shifts into a minted coin with which the creature is familiar

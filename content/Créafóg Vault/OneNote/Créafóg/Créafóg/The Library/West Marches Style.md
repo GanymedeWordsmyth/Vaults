@@ -1,0 +1,1 @@
+Turn the cleaver and the Vermithrax Estate into a library campus. It's effectively an adventurers' guild but everyone is works for the library in some capacity.

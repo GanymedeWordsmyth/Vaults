@@ -1,0 +1,14 @@
+Highborough  
+~~Fairfield~~  
+Blackwell  
+~~Stonecastle~~  
+Shadowfield  
+~~Clearmoor~~  
+~~Greenbarrow~~  
+~~Brightwick~~  
+~~Aldshore~~  
+Falconworth  
+Taloncroft  
+Allencot  
+Shadowreach  
+Newpine

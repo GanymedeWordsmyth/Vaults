@@ -1,0 +1,1 @@
+Tethys was birthed from the union between Uranus (Sky) and Gaia (Earth) and is the primeval mother of the race of gods

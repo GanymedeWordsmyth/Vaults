@@ -1,0 +1,11 @@
+- Need to come up with colossus-style fight seen just in case PCs want to fight Demogorgon
+- Don't use his full health. Use health meter appropriate to PC level
+- When this health meter drops to zero, Demogorgon runs away
+- If they succeed, the village is savagely destroyed, but is in such a state where rebuilding is possible
+- Ixitxachitl swim away with Demogorgon
+- Tentacle attack. Can be climbed **[need DC stat]**
+    
+    - Tentacle sweep attack
+- Stomp attack. Can be climbed **[need DC stat]**
+- Fire breath **[provide countermeasure]**
+- Gaze

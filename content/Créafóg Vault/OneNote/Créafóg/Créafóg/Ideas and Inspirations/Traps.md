@@ -1,0 +1,1 @@
+A rune that summons an arcane force cage that ensnares the creature or creatures that activated it (Dex save). The cage wavers, then shoots an arc across the cage. Any creature trapped inside that fails a Dex save, takes damage.

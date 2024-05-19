@@ -1,0 +1,1 @@
+Only exist as NPCs

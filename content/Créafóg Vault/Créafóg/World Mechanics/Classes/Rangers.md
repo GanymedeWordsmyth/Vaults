@@ -1,0 +1,1 @@
+Favored Foe: extra damage is a number of d6's equal to half your ranger level, rounded up (similar to rogue's sneak attack)

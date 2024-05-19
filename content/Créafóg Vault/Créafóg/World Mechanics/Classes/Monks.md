@@ -1,0 +1,5 @@
+**Monk Masters.** Monks can become Masters of certain animals. There can only be one master of each type. Each master has abilities that mortals were not necessarily supposed to have. These masters were given to monks from demons, devils, evil dragons, etc for their continued worship. A monk can fight these masters in one-on-one combat. The winner becomes the new master.
+
+**Master of Locusts.** After a successful unarmed melee attack, but before dealing damage, roll 1d6. Each ally within 30 feet takes that much damage and your attack deals additional damage equal to the total damage suffered by all allies. This ability refreshes after a long rest.
+
+**Master of Ravens.** You gain a flying speed of 60’ until the end of your next round. Any successful unarmed melee attacks you make during this duration also blind your target. This ability refreshes after a long rest.

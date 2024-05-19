@@ -1,0 +1,2 @@
+This item bonds to the first person to touch it. Once that person dies, the item becomes able to bond again. The user may activate the hourglass, and a small portion of sand will run out, allowing them to perceive time in reverse, and thus, changing the future.  
+Destroyed by: There is a finite amount of sand in the hourglass. With each use, more sand runs out, and when the last grain falls, the user ceases to be.

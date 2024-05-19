@@ -1,0 +1,1 @@
+Because of the portal to the Nine Hells that opened up, the closer you get to the portal, the more likely that a teleportation spell above 3rd will leave a permanent hole in reality.

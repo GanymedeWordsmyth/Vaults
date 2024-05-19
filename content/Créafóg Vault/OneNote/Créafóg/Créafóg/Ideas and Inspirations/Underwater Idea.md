@@ -1,0 +1,1 @@
+Game takes place underwater but that's not revealed until later. Until then, describe sea vegetation as regular plants and forests, massive floating fish and aquatic animals as normal.

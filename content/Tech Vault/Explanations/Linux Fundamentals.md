@@ -677,13 +677,14 @@ Docker is an app-centric platform that builds on top of LXC and provides a more 
 | 7        | Configure SSH access to your LXC containers and connect to them remotely.                              |
 | 8        | Create a container with persistence, so changes made to the container are saved and can be reused.     |
 | 9        | Use LXC to test software in a controlled environment, such as a vulnerable web application or malware. |
-# Network Configuration
+# Linux Networking
+## Network Configuration
 One key skill req'd as a pentester is conf'ing and managing network settings on Linux sys's. This skill is invaluable in setting up test env's, controlling net traffic, or ID'ing and exploiting vulns. By understanding Linux's net conf options, users can tailor their approach to suit specific needs and optimize results.
 One of the primary net conf tasks is config'ing network interfaces, including assigning IP addr, conf net devices such as routers and switches, and setting up net protocols. It is essential to thoroughly understand the net protocals and their specific use-cases, e.g. TCP/IP, DNS, DHCP, and FTP. Additionally, familiarize yourself w diff net interfaces such as wireless and wired connections, and be able to troubleshoot connectivity issues.
 Network access control (NAC) is another crit component of net config. It's important to be familiar w the importance of NAC for net sec and the diff NAC techs avail, including discretionary access control (DAC), mandatory access control (MAC), and role-based access control (RBAC). Understand the diff NAC enforcement mechanisms and know how to config Linux net devices for NAC, including setting up SELinux policies, config AppArmor profiles, and using TCP wrappers to control access.
 Monitoring net traf is also essential in net config, therefore know how to config net monitoring and logging and be able to analyze net traff for sec purposes using tools such as `syslog`, `rsyslog`, `ss`, `lsof`, and the `ELK` stack.
 Moreover, good knowledge of net troubleshooting tools is crucial for IDing vulns and interacting w other networks and hosts. Additionally, familiarize yourself with network diagnostic and enumeration tools such as `ping`, `nslookup`, and `nmap`, which can provide valuable insight into the net traff, packet loss, latency, DNS resolution, and so much more. Understanding how to effectively use these tools will allow a user to quickly pinpoint root causes of any network problems and take the necessary steps to resolves them.
-## Configuring Network Interfaces
+### Configuring Network Interfaces
 The `ifconfig` and `ip` cmds are used to view and configure local net interfaces, such as `eth0` on Linux. The `ifconfig` cmd is used to obtain info such as IP addr, netmasks, and status, which are displayed in a clear and organized manner, and is particularly useful when troubleshooting network connectivity issues or setting up a new net config. It should be noted that the `ifconfig` cmd has been deprecated in newer versions of Linux and replaced by the `ip` cmd, which offers more advanced feats. Nevertheless, `ifconfig` is still widely used in many Linux distros and continues to be a reliable tool for net mngment.
 - `$ sudo ifconfig eth0 up` and `$ sudo ip link set eth0 up` will both activate the `eth0` net interface.
 - `$ sudo ifconfig eth0 192.168.1.2` assigns the ip addr `192.168.1.2` to the `eth0` interface.
@@ -705,17 +706,17 @@ iface eth0 inet static
 ```
 This sets the `eth0` net interface to the static IP addr of `192.168.1.2`, w a netmask of `255.255.255.0` and a default gateway of `192.168.1.1`, and specifies the DNS servers of `8.8.8.8` and `8.8.4.4`. All of which is placed in the `/etc/network/interfaces` file, which persists across reboots and ensures network connection remains stable and reliable. After making these changes, restart the networking service to apply them:
 `$ sudo systemctl restart networking`
-## Network Access Control
+### Network Access Control
 NAC is an important component of netsec, esp in today's era of inc cyber threats. As a pentester, it is vital to understand the significance of NAC in prot the net and the various NAC techs that can be utilized to enhance sec measure. NAC is a sec sys that ensures that only auth and compliant devices are granted access to the network, preventing unauth access, data breaches, and other sec threats. By implementing NAC, orgs can be confident in their ability to prot their assets and data from cybercriminals who always seek to exploit sys vulns.  DAC, MAC, and RBAC are techs designed to provide diff levels of AC and sec. Each tech has its unique characteristics and is suitable for diff use cases and it is important to know these as a pentester to effectively test and eval a net's sec.
-### Discretionary Access Control
+#### Discretionary Access Control
 DAC helps orgs provide access to their resources while mnging the associated risks of unath access by granting resource owners the responsibility of controlling access perms to their resources as well as what actions (read, write, execute, delete) can be performed by which auth user. 
-### Mandatory Access Control
+#### Mandatory Access Control
 MAC is used in infrastructure that provides more fine-grained control over resource access than DAC sys's by defining rules that determine resource access based on the resource's sec level and the user's sec level or process requesting access. Each resource is assigned a sec label that ID's its sec level, and each user or proc is assigned a sec clearance the ID's its sec level. Access to a resource is only granted if the user's or proc's sec level is equal to or greater than the sec level of the resource. MAC is often used is OS's and apps that req a high level of sec, such as military or gov sys's, financial sys's, and healthcare sys's. MAC sys's are designed to prevent unauth access to resources and minimize the impact of sec breaches.
-### Role-Based Access Control
+#### Role-Based Access Control
 RBAC assigns perms to users based on their roles w/i an org. Users are assigned roles based on their job responsibilities or other criteria, and each role is granted a set of perms that determine the actions they can perform. RBAC simplifies the mngm of access perms, reduces the risk of errs, and ensures that users can access only the resources necessary to perform their job functions. It can restrict access to sensitive resources and data, limit the impact of sec breaches, and ensure compliance w regulatory reqs. Compared to DAC sys's, RBAC provides a more flexible and scalable approach to mng resource acess. In an RBAC sys, each user is assigned one or more roles, and each role is assigned a set of perms that def the user's actions. Resource access is granted based on the user's assigned role rather than their ID or ownership of the resource. RBAC sys's are typically used in env w many users and resources, such as large orgs, gov agencies, and financial institutions.
-## Monitoring
+### Monitoring
 Net monitoring involves capturing, analyzing, and interpreting net traff to ID sec threats, vulns, performance issues, and suspicious behavior. E.g. pentesters can capture creds when someone uses an unenc connection and tried to log into an FTP server. As a result, these creds might help to infiltate the network even further or escalate privileges to a higher level.
-## Troubleshooting
+### Troubleshooting
 Net troubleshooting involves ID, analyzing, and implementing solutions to resolve problems. Some of the most commonly used tools include:
 1. Ping
 2. Traceroute
@@ -723,11 +724,11 @@ Net troubleshooting involves ID, analyzing, and implementing solutions to resolv
 4. TCPDump
 5. Wireshark
 6. Nmap
-### Ping
+#### Ping
 `$ ping <remote_host>` will send ICMP packets to `<remote_host>` and display the response times.
-### Traceroute
+#### Traceroute
 `$ traceroute <remote_host>` traces the route packets take to reach `<remote_host>` by sending packets w inc Time-to-Live (TTL) vals to `<remote_host>` and displays the IP addrs of the devices that the packets pass through. When setting up a net connection, it is important to specify the dest host and IP addr. This ensures that the connection is est effeciently and reliably and by providing this info, the sys can route traff to the correct dest and limit the num of intermediate stops the data needs to make.
-### Netstat
+#### Netstat
 Used to disp active net connections and their associated ports. It can be used to ID net traff and troubleshoot connectivity issues.
 Using `netstat` will display detailed info about each connection, uncluding the protocol used, the num of bytes sent and received, IP addr's, port nums of both local and remote devices, and the current connection state. The output of `$ netstat -a` provides valuable insights into the net activity on the sys, highlighting specific connections currently active and listening on specific ports. By knowing which ports are used by which services, users can quickly ID any net issues and troubleshoot accordingly. The most common net issues encountered during a pentest include:
 - Network connectivity issues
@@ -746,23 +747,23 @@ Using `netstat` will display detailed info about each connection, uncluding the 
 - Incorrectly conf net settings
 - Unpatched software or firmware
 - Lack of proper sec ctrls
-## Hardening
+### Hardening
 Several mechanisms are highly effective in securing Linux sys's in keeping data safe. Three such mechanisms are SELinux, AppArmor, and TCP wrappers. These tools are designed to safeguard Linux sys's against various sec threats, from unauth access to malicious atks, esp while conducting a pentest. There is almost no worse scenario than when a co is compromised dur to a pentest. By implementing these sec measures and ensuring that corresponding prots are set up against potential arkrs, the risk of data leaks is significantly reduced and sys's remain secure. 
-### Differences
-#### SELinux
+#### Differences
+##### SELinux
 A MAC sys that is built into the Linux kernel designed to provide fine-grained access ctrl o/ sys resources and apps. SELinux works by enforcing a policy that def's the access ctrls for each proc and file on the sys. It provides a higher level of sec by limiting the dmg a compromised proc can do.
-#### AppArmor
+##### AppArmor
 A MAC sys that provides a similar level of ctrl o/ a sys resources and apps to SELinux, but is instead implemented as a `Linux Security Module` (`LSM`) and uses profiles to def the resources that an app can access. AppArmor is typically easier to use and conf than SELinux but may not provide the same level of fine-grained ctrl.
-#### TCP Wrappers
+##### TCP Wrappers
 A host-based net AC mechanism that can be used to restrict access to network services based on the IP addr of the client sys. It works by intercepting incoming net requests and comparing the IP addr of the client sys to the AC rules. These are useful for limiting access to net services from unauth sys's.
-### Similarities
+#### Similarities
 These three sec mechanisms share the common goal of ensuring the safety and security of Linux sys's by providing extra prot, restricting access to resources and services, and reducing the risk of unauth access and data breaches. It's also worth noting that these mechanisms are readily avail as part of most Linux distros, making them accessible to pentesters to enhance sys sec. Furthermore, these mechanisms can be easily customized and conf'd using std tools and utils, making them a convenient choice for Linux users.
-## Setting up
+### Setting up
 Navigating the world of Linux will inevitably encounter a wide range of techs, apps, and services that are important. Being able to become proficient in these is a crucial skill, particularly when working in cybersec and strive to improve expertise continuously. It is highly recommended to dedicate time to learning about conf'g important sec measures such as `SELinux`, `AppArmor`, and `TCP wrappers`. It is also recommended to use a personal VM and make freq snapshots, esp before making changes.
 
 There is no one-size-fits-all approach to implementing cybersec measures. It is important to consider specific info that warrants protection and the tools used to do so. However, you can practice and implement several optional tasks w other prospective pentesters in the HtB Discord channel to inc knowledge and skills in this area. By taking adv of the helpfulness of others and sharing your own expertise, you can deepen your understanding of cybersec and help others do the same. Remember: explaining concepts to others helps solidify knowledge in your own mind.
-### Optional Exercises
-#### SELinux
+#### Optional Exercises
+##### SELinux
 
 | d   | d                                                                                                            |
 | --- | ------------------------------------------------------------------------------------------------------------ |
@@ -770,23 +771,23 @@ There is no one-size-fits-all approach to implementing cybersec measures. It is 
 | 2.  | Configure SELinux to prevent a user from accessing a specific file.                                          |
 | 3.  | Configure SELinux to allow a single user to access a specific network service but deny access to all others. |
 | 4.  | Configure SELinux to deny access to a specific user or group for a specific network service.                 |
-#### AppArmor
+##### AppArmor
 
 | d   | d                                                                                                             |
 | --- | ------------------------------------------------------------------------------------------------------------- |
 | 5.  | Configure AppArmor to prevent a user from accessing a specific file.                                          |
 | 6.  | Configure AppArmor to allow a single user to access a specific network service but deny access to all others. |
 | 7.  | Configure AppArmor to deny access to a specific user or group for a specific network service.                 |
-#### TCP Wrappers
+##### TCP Wrappers
 
 | d   | d                                                                                                  |
 | --- | -------------------------------------------------------------------------------------------------- |
 | 8.  | Configure TCP wrappers to allow access to a specific network service from a specific IP address.   |
 | 9.  | Configure TCP wrappers to deny access to a specific network service from a specific IP address.    |
 | 10. | Configure TCP wrappers to allow access to a specific network service from a range of IP addresses. |
-# Remote Desktop Protocols in Linux
+## Remote Desktop Protocols in Linux
 Remote desktop protocols (RDPs) are used in Windows, Linux, and macOS to provide graphical remote access to a system. The admins can utilize RDP in many scenarios like troubleshooting, software or sys upgrading, and remote sys admin. The admin needs to connect to the remote sys they will administer remotely, and, therefore, they use the appropriate protocol accordingly. In addition, they can log in using diff protocols if they want to install an app on their remote sys. The most common protocols for this are RDP (Windows) and VNC (Linux).
-## XServer
+### XServer
 The XServer is the user-side part of the `X Window System network protocol` (`X11`/`X`). The `X11` is a fixed system that consists of a collection of protocols and apps that allow admins to call application windows on displays in a graphical user interface (GUI). X11 is predominant on Unix systems, but X servers are also avail for other OS's. Nowadays, the XServer is a part of almost every desktop installation of Ubuntu and its derivatives and does not need to be installed separately.
 
 When a desktop is started on a Linux computer, the communication of the GUI w the OS happens via an X server. The computer's internal network is used, even if the computer should not be in a network. The practical thing about the X protocol is net transparency. This protocol mainly uses TCP/IP as a transport base but can also be used on pure Unix sockets. The ports that are utilized for X server are typically located in the range of `TCP/6001-6009`, allowing communication b/w the client and server. When starting a new desktop session via X server the `TCP port 6000` would be opened for the first X display `:0`. This range of ports enable the server to perform its tasks such as hosting apps, as well as providing services to clients. They are often used to provide remote access to a sys, allowing users to access apps and data from anywhere in the world. Additionally, these ports are also essential for the secure sharing of files and data, making them an integral part of the Open X Server. Thus, an X server is not dependent on the local computer, it can be used to access other computers, and other computers can use the local X sever. Provided that both local and remote computers contain Unix/Linux sys's, additional protocols such as VNC and RDP are superfluous. VNC and RDP gen the graphical output on the remote computer and transport it o/ the network. Whereas w X11, it is rendered on the local computer, saving traffic and a load on the remote computer. However, X11's significant disadv in the unenc data transmission, but this can be overcome by tunneling the SSH protocol.
@@ -794,15 +795,15 @@ For this, allow X11 forwarding in the SSH conf file (`/etc/ssh/sshd_config`) on 
 `$ cat /etc/ssh/sshd_config | grep X11Forwarding`
 with this, start the application from the client w the following cmd (which will start firefox):
 `$ ssh -X <userid>@<remote_host> /usr/bin/firefox`
-## X11 Security
+### X11 Security
 X11 is not a secure protocol w/o suitable security measures since X11 comminucation is entirely unenc e.g. a completely open X server lets anyone on the network read the contents of its windows, which goes entirely unnoticed by the user sitting in front of it. Therefore, it is not even necessary to sniff the network. This std X11 functionality is realized w simple X11 tools like `xwd` and `xgrabsc`. This means that anyone one the network can read users' keystrokes, obtain screenshots, move the mouse cursor and send keystrokes from the server o/ the network.
 
 A good example is several vulns found in XServer, where a local atkr can exploit vulns in XServer to execute arbitrary code w user priv and gain user privs. The OS affected by these vulns were UNIX and Linux, Red Hat Enterprise Linux, Ubuntu Linux, and SUSE Linux. THese vulns are known as CVE-2017-2624, CVE-2017-2625, and CVE-2017-2626.
-## XDMCP
+### XDMCP
 The `X Display Manager Control Protocol` (`XDMCP`) is used by the `X Display Manager` for communication through UDP port 177 b/w X terminals and computers operating under Unix/Linux. It is used to mng remote X Window sessions on other machines and is often used by Linuc sysadmins to provide access to remote desktops. XDMCP is an insecure protocol and should not be used in any env that req's high levels of sec. W this, it is possible to redirect an entire GUI (e.g. KDE or Gnome) to a corresponding client. For a Linux system to act as an XDMCP server, an X sys w a GUI must be installed and config'd on the server. After starting the comp, a graphical interface should be available locally to the user.
 
 One potential way that XDMCP could be exploited is through a man-in-the-middle atk. In this type of ark, an atkr intercepts the comms b/w the remote comp and the X Window Sys server, and impersonates one of the parties in order to gain unauth access to the server. The atkr could then use the server to run arbitrary cmds, access sensitive data, or perform other actions that could compromise the sec of the sys.
-## VNC
+### VNC
 `Virtual Network Computing` (`VNC`) is a remote desktop sharing sys based on the RFB protocol that allows users to ctrl a comp remotely. It allows a user to view and interact w a desktop env remotely o/ a network connections. The user can ctrl the remote comp as if sitting in front of it. This is also one of the most common protocols for remote graphical connections for Linux hosts.
 
 VNC is generally considered to be secure. It uses enc to ensure the data is safe while in transit and req auth b4 a user can gain access. Admins make use of VNC to access computers that are not physically accessible. This could be used to troubleshoot and maintain servers, access apps on the other comps, or provide remote access to workstations. VNC can also be used for screen sharing, allowing multiple users to collab on a proj or troubleshoot a problem.
@@ -832,3 +833,74 @@ Verify: ******
 Would you like to enter a view-only password (y/n)? n
 ```
 During installation, a hidden folder is created in the home dir called `.vnc`. Then, you have to create two additional files, `xstartup` and `config`. The `xstartup` file determines how the VNC session is created in connection w the display mngr, and the `config` determines its settings.
+```config
+$ touch ~/.vnc/xstartup ~/.vnc/config
+$ cat <<EOT >> ~/.vnc/xstartup
+
+#!/bin/bash
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+/usr/bin/startxfce4
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+x-window-manager &
+EOT
+
+$ cat <<EOT >> ~/.vnc/config
+
+geometry=1920x1080
+dpi=96
+EOT
+
+$ chmod +x ~/.vnc/xstartup # gives executable rights
+$ vncserver # starts the VNC server
+
+New 'linux:1 (<user>)' desktop at :1 on machine linux
+
+Starting applications specified in /home/htb-student/.vnc/xstartup
+Log file is /home/htb-student/.vnc/linux:1.log
+
+Use xtigervncviewer -SecurityTypes VncAuth -passwd /home/htb-student/.vnc/passwd :1 to connect to the VNC server.
+
+$ vncserver -list # list vnc sessions
+
+TigerVNC server sessions:
+
+X DISPLAY #   RFB PORT #   PROCESS ID
+:1            5901         79746
+```
+
+To enc the connection, create an SSH tunnel o/ which the whole connection is tunneled w/ the following cmd:
+`$ ssh -L 5901:127.0.0.1:5901 -N -f -l <user> 10.129.14.130`
+
+Finally, connect to the server through the SSH tunnel using `xtightvncviewer`:
+`$ xtightvncviewer localhost:5901`
+# Linux Hardening
+## Linux Security
+All comp sys's have an inherent risk of intrusion. Some present more of a rish than others, such as an internet-facing web server hosting multiple complex web apps. Linux sys's are also less prone to viruses that affect WinOS's and do not present as large an atk surface as Active Directory domain-joined hosts. Regardless, it is essential to have certain fundamentals in place to secure any Linux sys.
+
+One of the Linux OS' most important sec measures is keeping the OS and installed pkgs up to date, which can be achieved using a cmd such as the following:
+`$ apt update && apt dist-upgrade`
+
+If firewall rules are not appropriately set at the network level, we can use the Linux firewall and/or `iptables` to restrict traffic into/out of the host.
+
+If SSH is open on the server, the config should be set up to disallow passwd login and disallow the root user from logging in via SSH. It is also important to avoid logging into and admin'ing the sys as the root user whenever possible and adequately mnging access control. Users' access should be determined based on the principle of least priv e.g. if a user needs to run a cmd as root, then that cmd should be specified in the `sudoers` config instead of giving them full sudo rights. Another common prot mechanism that can be used is `fail2ban`. This tool counters the number of failed login attempts, and if a user has reached the max num, the host that tried to connect will be handled as config'ed.
+
+It is also important to periodically audit the sys to ensure that issues do not exist that could facilitate priv escalation, such as an out-of-date kernel, user perm issues, world-writable files, and misconfig cron jobs or services. Many admins forget about the possibility some kernel versions have to be updated manually.
+
+An option for further locking down Linux sys's is `Security-Enhanced Linux` (`SELinux`) or `AppArmor`. This is a kernel sec module that can be used for sec access ctrl policies. In SELinux, every process, file, dir, and sys obj is given a label. Policy rules are created to ctrl access b/w these labeled proc's and obj's and are enforced by the kernel. This means that access can be set up to ctrl which users and apps can access which resources. SELinux provides very granular access ctrls, such as specifying who can append to a file or move it.
+
+Besides, there are different applications and services such as [Snort](https://www.snort.org/), [chkrootkit](http://www.chkrootkit.org/), [rkhunter](https://packages.debian.org/sid/rkhunter), [Lynis](https://cisofy.com/lynis/), and others that can contribute to Linux's security. In addition, some security settings should be made, such as:
+
+- Removing or disabling all unnecessary services and software
+- Removing all services that rely on unencrypted authentication mechanisms
+- Ensure NTP is enabled and Syslog is running
+- Ensure that each user has its own account
+- Enforce the use of strong passwords
+- Set up password aging and restrict the use of previous passwords
+- Locking user accounts after login failures
+- Disable all unwanted SUID/SGID binaries
+
+This list is incomplete, as safety is not a product but a proc. This means that specific steps must always be taken to prot the sys's better, and it depends on the admins how well they know their OSs. The better the admins are familiar w/ the sys, and the more they are trained, the better and more sec their sec precautions and sec measures will be.
+### TCP Wrappers
+TCP wrapper is a sec mechanism used in Linux sys's that allows the sysadmin to ctrl which services are allowed access to the sys. It works by restrictin access to 

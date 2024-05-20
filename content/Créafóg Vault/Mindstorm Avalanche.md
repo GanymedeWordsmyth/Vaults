@@ -25,3 +25,5 @@ The alchemical stuff I put under the witch hunter subclass should be available t
 
 Herald of Souls
 Expertise and Mastery in spell and weapon attacks (very specific, expertise/mastery in only one specific spell or weapon)
+
+Souls can be consumed or traded. When a soul is consumed, it empowers the creature that consumed the soul, giving the creature permanent buffs to stats. Some souls buff spells or spellcasting (gives extra spell slots/points), some give unlimited access to cast certain spells at-will, some buff physical or mental ability scores, etc.

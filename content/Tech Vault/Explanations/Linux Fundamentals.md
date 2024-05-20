@@ -903,4 +903,35 @@ Besides, there are different applications and services such as [Snort](https://
 
 This list is incomplete, as safety is not a product but a proc. This means that specific steps must always be taken to prot the sys's better, and it depends on the admins how well they know their OSs. The better the admins are familiar w/ the sys, and the more they are trained, the better and more sec their sec precautions and sec measures will be.
 ### TCP Wrappers
-TCP wrapper is a sec mechanism used in Linux sys's that allows the sysadmin to ctrl which services are allowed access to the sys. It works by restrictin access to 
+TCP wrapper is a sec mechanism used in Linux sys's that allows the sysadmin to ctrl which services are allowed access to the sys. It works by restricting access to certain services based on the hostname or IP addr's of the user requesting access. When a client attempts to connect a service the sys will first consult the rules def'd in the TCP wrappers config files to determine the IP addr of the client. If the IP addr matches the criteria speficied in the config files, the sys will then grant the client access to the service. However, if the criteria are not met, the connection will be denied, providing an additional layer of sec for the service. TCP wrappers us the following config files:
+- `/etc/hosts.allow`
+- `/etc/hosts.deny`
+```/etc/hosts/allow
+$ cat /etc/hosts.allow
+
+# Allow access to SSH from the local network
+sshd : 10.129.14.0/24
+
+# Allow access to FTP from a specific host
+ftpd : 10.129.14.10
+
+# Allow access to Telnet from any host in the inlanefreight.local domain
+telnetd : .inlanefreight.local
+```
+```/etc/hosts.deny
+$ cat /etc/hosts.deny
+
+# Deny access to all services from any host in the inlanefreight.com domain
+ALL : .inlanefreight.com
+
+# Deny access to SSH from a specific host
+sshd : 10.129.22.22
+
+# Deny access to FTP from hosts with IP addresses in the range of 10.129.22.0 to 10.129.22.255
+ftpd : 10.129.22.0/24
+```
+It is important to remember that the order of the rules in the files is important. The first rule that matches the requested service and host is the one that will be applied. It is also important to note that TCP wrappers are not a replacement for a firewall, as they are limited by the fact that they can only ctrl access to services and not to ports.
+## Firewall Setup
+The primary goal of firewalls is to provide a sec mechanism for ctrling and monitoring the network traff b/w diff net segments, such as internal and external networks or diff network zones. Firewalls play a crucial role in prot'ing comp networks from unauth access, malicious traff, and other sec threats. Linux, being a popular OS used in servers and other net devices, provides built-in firewall capabilities that can be used to ctrl net traff i.e. they can filter incoming and outgoing taff based on pre-defined rules, protocols, ports, and other criteria to prevent unauth access and mitigate sec threats. The specific goal of a firewall implementation can vary depending on the specific needs of an org, such as ensuring confidentiality, integrity, and avail of net resources.
+
+An example from the history of Linux firewalls is the dev of the `iptables` tool, which replaced the earlier `ipchains` and `ipfwadm` tools. The `iptables` util was first introduced in the Linux 2.4 kernel in 2000 and provided a flexible and efficient mechanism for filtering net traff. `iptables` became the de facto std firewall solution for Linux sys's, and it has been widely adopted by many orgs and users.

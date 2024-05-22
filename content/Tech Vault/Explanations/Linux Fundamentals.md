@@ -935,3 +935,93 @@ It is important to remember that the order of the rules in the files is importan
 The primary goal of firewalls is to provide a sec mechanism for ctrling and monitoring the network traff b/w diff net segments, such as internal and external networks or diff network zones. Firewalls play a crucial role in prot'ing comp networks from unauth access, malicious traff, and other sec threats. Linux, being a popular OS used in servers and other net devices, provides built-in firewall capabilities that can be used to ctrl net traff i.e. they can filter incoming and outgoing taff based on pre-defined rules, protocols, ports, and other criteria to prevent unauth access and mitigate sec threats. The specific goal of a firewall implementation can vary depending on the specific needs of an org, such as ensuring confidentiality, integrity, and avail of net resources.
 
 An example from the history of Linux firewalls is the dev of the `iptables` tool, which replaced the earlier `ipchains` and `ipfwadm` tools. The `iptables` util was first introduced in the Linux 2.4 kernel in 2000 and provided a flexible and efficient mechanism for filtering net traff. `iptables` became the de facto std firewall solution for Linux sys's, and it has been widely adopted by many orgs and users.
+
+The `iptables` util provided a simple, yet powerful cli for config'ing firewall rules, which could be used to filter traff based on various criteria such as IP addr's, ports, protocols, and more. `iptables` was designed to be highly customizable and could be used to create complex firewall rulesets that could prot against various sec threats such as denial-of-service (DoS) atks, port scans, and net intrusion attempts.
+
+In Linux, the firewall functionality is typically implemented using the `Netfilter` framework, which is an integral part of the kernel. `Netfilter` provides a set of hooks that can be used to intercept and mod net traff as it passes through the sys. The `iptables` util is commonly used to config the firewall rules on Linux sys's.
+### iptables
+There exists many alternatives to `iptables`, some of which are built on top of `iptables`, but also simplify the configuration of a firewall. Most notable alternatives include: `nftables`, `ufw`, and `firewalld`. `NFtables` provides a more modern syntax and improved performance o/ `iptables`. However, the syntax of `nftables` is not compatible w/ `iptables` so migration to `nftables` req's some effort. `UFW`, which stands for "Uncomplicated Firewall," is built on top of the `iptables` framework and provides a simple and user-friendly interface for config'g firewall rules. Finally, `FirewallD` provides a dynamic and flexible firewall solution that can be used to mng complex firewall configs, and it supports a rich set of rules for filters net traff and can be used to create custom fw zones and services. The main components of `iptables` are as follows:
+
+|**Component**|**Description**|
+|---|---|
+|`Tables`|Tables are used to organize and categorize firewall rules.|
+|`Chains`|Chains are used to group a set of firewall rules applied to a specific type of network traffic.|
+|`Rules`|Rules define the criteria for filtering network traffic and the actions to take for packets that match the criteria.|
+|`Matches`|Matches are used to match specific criteria for filtering network traffic, such as source or destination IP addresses, ports, protocols, and more.|
+|`Targets`|Targets specify the action for packets that match a specific rule. For example, targets can be used to accept, drop, or reject packets or modify the packets in another way.|
+#### Tables
+These are used to categorize and organize fw rules based on the type of traff that they are designed to handle. Each table is responsible for performing a specific set of tasks:
+
+| **Table Name** | **Description**                                                                  | **Built-in Chains**                             |
+| -------------- | -------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `filter`       | Used to filter network traffic based on IP addresses, ports, and protocols.      | INPUT, OUTPUT, FORWARD                          |
+| `nat`          | Used to modify the source or destination IP addresses of network packets.        | PREROUTING, POSTROUTING                         |
+| `mangle`       | Used to modify the header fields of network packets.                             | PREROUTING, OUTPUT, INPUT, FORWARD, POSTROUTING |
+| `raw`          | Not a build-in table, the raw table configures special packet processing options | PREROUTING, OUTPUT                              |
+#### Chains
+Chains organize rules that def how net traff should be filtered or modded. There are two types of chains in `iptables`:
+- Built-in chains
+- User-defined chains
+The built-in chains are pre-defined and automatically created when a table is created. Each table has a diff set of built-in chains as described in the above table.
+- `PREROUTING` is used to mod the dest IP addr of incoming pkts before the routing table processes them
+- `POSTROUTING` is used to mod the source IP addr of outgoing pkts after the routing table has processed them
+- `OUTPUT` handles outgoing pkts
+- `INPUT` handles incoming pkts
+- `FOREWORD` handles pkts that are forwarded by the sys
+`User-Defined Chains` can simplify rule mngment by grouping fw rules based on specific criteria, such as source IP addr, dest port, or protocol. They can be added to any of the three main tables. 
+#### Rules and Targets
+`iptables` rules are used to define the criteria for filtering net traff and the actions to take for pkts that match the criteria. Rules are added to chains using the `-A` option followed by the chain name, and they can be modded or deleted using various other options.
+
+Each rule consists of a set of criteria or matches and a target specifying the action for packets that match the criteria. The criteria or matches match specific fields in the IP header, such as the source or dest IP addr, protocol, source, dest port num, etc. The target specifies the action for pkts that match the criteria. Some of the common targets used in `iptables` rules include the following:
+
+|**Target Name**|**Description**|
+|---|---|
+|`ACCEPT`|Allows the packet to pass through the firewall and continue to its destination|
+|`DROP`|Drops the packet, effectively blocking it from passing through the firewall|
+|`REJECT`|Drops the packet and sends an error message back to the source address, notifying them that the packet was blocked|
+|`LOG`|Logs the packet information to the system log|
+|`SNAT`|Modifies the source IP address of the packet, typically used for Network Address Translation (NAT) to translate private IP addresses to public IP addresses|
+|`DNAT`|Modifies the destination IP address of the packet, typically used for NAT to forward traffic from one IP address to another|
+|`MASQUERADE`|Similar to SNAT but used when the source IP address is not fixed, such as in a dynamic IP address scenario|
+|`REDIRECT`|Redirects packets to another port or IP address|
+|`MARK`|Adds or modifies the Netfilter mark value of the packet, which can be used for advanced routing or other purposes|
+As an example, to add a new entry to the `INPUT` chain that allows incoming TCP traffic on port 22 (SSH) to be accepted would look like the following:
+`$ sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT`
+#### Matches
+`Matches` are used to specify the criteria that determine whether a fw rule should be applied to a particular pkt or connection. Matches are used to match specific char's of net traff, such as the source or dest IP addr, protocol, port num, etc:
+
+|**Match Name**|**Description**|
+|---|---|
+|`-p` or `--protocol`|Specifies the protocol to match (e.g. tcp, udp, icmp)|
+|`--dport`|Specifies the destination port to match|
+|`--sport`|Specifies the source port to match|
+|`-s` or `--source`|Specifies the source IP address to match|
+|`-d` or `--destination`|Specifies the destination IP address to match|
+|`-m state`|Matches the state of a connection (e.g. NEW, ESTABLISHED, RELATED)|
+|`-m multiport`|Matches multiple ports or port ranges|
+|`-m tcp`|Matches TCP packets and includes additional TCP-specific options|
+|`-m udp`|Matches UDP packets and includes additional UDP-specific options|
+|`-m string`|Matches packets that contain a specific string|
+|`-m limit`|Matches packets at a specified rate limit|
+|`-m conntrack`|Matches packets based on their connection tracking information|
+|`-m mark`|Matches packets based on their Netfilter mark value|
+|`-m mac`|Matches packets based on their MAC address|
+|`-m iprange`|Matches packets based on a range of IP addresses|
+In general, matches are specified using the `-m` option in `iptables` e.g. the following cmd adds a rule to the `INPUT` chain in the `filter` table that matches incoming TCP traff on put 80:
+`$ sudo iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT`
+Specifically, this example rule matches incoming TCP traf (`-p tcp`) on port 80 (`--dport 80`) and jumps to the accept target (`-j ACCEPT`) if the match is successful.
+
+### Excercises
+
+|     |                                                                                                              |
+| --- | ------------------------------------------------------------------------------------------------------------ |
+| 1.  | Launch a web server on TCP/8080 port on your target and use iptables to block incoming traffic on that port. |
+| 2.  | Change iptables rules to allow incoming traffic on the TCP/8080 port.                                        |
+| 3.  | Block traffic from a specific IP address.                                                                    |
+| 4.  | Allow traffic from a specific IP address.                                                                    |
+| 5.  | Block traffic based on protocol.                                                                             |
+| 6.  | Allow traffic based on protocol.                                                                             |
+| 7.  | Create a new chain.                                                                                          |
+| 8.  | Forward traffic to a specific chain.                                                                         |
+| 9.  | Delete a specific rule.                                                                                      |
+| 10. | List all existing rules.                                                                                     |

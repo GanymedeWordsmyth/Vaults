@@ -1,5 +1,6 @@
 *Enumeration, enumeration, enumeration. If you can't figure something out, it's because you haven't enumerated enough.*
-
+# Introduction
+## Enumeration
 `Enumeration` is the most critical part of all. The art, the difficulty, and the goal are not to gain access to our target computer. Instead, it is identifying *all* of the ways we could atk a target that must be found.
 
 This is not just based on the tools used. They only get you so far. The tools are just tools, and tools alone should never replace knowledge and attention to detail. Enumeration is much more about actively interacting w the individual services to see what info they provide and what possibilities the offer.
@@ -20,7 +21,7 @@ That's what most people say, and they are right. However, it is too often misund
 That's precisely why so many people stay stuck in one spot and don't get ahead. Had these people invested a couple of hours learning more about the service in question, how it works, and what it is meant for, they would save a few hours or even days from reaching their goal and get access to the sys.
 
 `Manual enumeration` is a `critical` component. Many scanning tools simplify and accelerate the proc. However, these cannot always bypass the sec measures of the services.
-# Introduction to Nmap
+## Introduction to Nmap
 Network Mapper (`Nmap`) is a FOSS network analysis and security auditing tool written in C, C++, Python, and Lua. It is designed to scan networks and ID which hosts are avail on the network using raw packets and services and apps, including the name and version, where possible. It can also ID the OS and versions of these hosts. Besides other features, Nmap also offers scanning capabilities that can determine if packet filters, firewalls, or intrusion detection systems (IDS) are config'd as needed.
 This tool is one of the most used tools by net admind and IT sec specialists. It is used to:
 - Audit the security aspects of networks
@@ -41,7 +42,8 @@ Nmap offers many diff types of scans that can be used to obtain various results 
 $ nmap <scan-types> <options> <target>
 ```
 The cmd `nmap --help` will display all the scanning techniques Nmap offers.
-# Host Discovery
+# Host Enumeration
+## Host Discovery
 When conducting an internal pentest for the entire network of a co, the first thing to do is to get an overview of which systems are online that can be worked w. To actively discover such systems on the network, utilize the various `nmap` host discovery options, the most effective of which is the **ICMP echo requests**.
 
 It is always recommended to store every single scan. This can later be used for comparison, documentation, and reporting. After all, diff tools may produce diff results. Therefore, it can be beneficial to distinguish which tool produces which results.
@@ -54,7 +56,7 @@ It is always recommended to store every single scan. This can later be used for 
 |`-oA tnet`|Stores the results in all formats starting with the name 'tnet'.|
 >[!Note]
 >This scanning method only works if the firewalls of the hosts allow it. Otherwise, there are other scanning techniques to find out if the hosts are active or not. This is covered in [[nmap#Firewall and IDS Evasion]]
-## Scan IP List
+### Scan IP List
 During an internal pentest, it is not uncommon to be provided w an IP list w the hosts needed to be tested. `Nmap` also gives the option of working w lists and reading the hosts from this list instead of manually defining or typing them in.
 ```example-ip-list
 $ cat hosts.lst
@@ -74,12 +76,12 @@ The cmd to use the same scanning technique on the predefined list would look lik
 |`-sn`|Disables port scanning.|
 |`-oA tnet`|Stores the results in all formats starting with the name 'tnet'.|
 |`-iL`|Performs defined scans against targets in provided 'hosts.lst' list.|
-### Scan Multiple IPs
+#### Scan Multiple IPs
 It's also common to only need to scan a small part of a network. An alternative to the method used last time is to specify multiple IP addrs:
 `$ sudo nmap -sn -oA tnet 10.129.2.18 10.129.2.19 10.129.2.20 | grep for | cut -d" " -f5`
 Fun note: if any IP addrs are next to each other, define the range in the respective octet:
 `$ sudo nmap -sn -oA tnet 10.129.2.18-20 | grep for | cut -d" " -f5`
-### Scan Single IP
+#### Scan Single IP
 Before scanning a single host for open ports and its services, first determine if it is alive or not w the following cmd that we've used before:
 `$ sudo nmap 10.129.2.18 -sn -oA host`
 
@@ -130,7 +132,7 @@ MAC Address: DE:AD:00:00:BE:EF
 Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
 ```
 This is where paying attention to detail comes into play. An `ICMP echo request` helps determine if a target is alive and IDs its system. More strategies about host discovery can be found [here](https://nmap.org/book/host-discovery-strategies.html). Notice that using `ICMP` instead of `ARP` displays the target's ttl values, which tells us the OS, in this case, is Windows.
-# Host and Port Scanning
+## Host and Port Scanning
 After confirming a target is alive, it's time to get a more accurate picture of the system. The necessary info includes:
 - Open ports and its services
 - Service versions
@@ -146,7 +148,7 @@ There are a total of 6 different states for a scanned port:
 | `unfiltered`       | This state of a port only occurs during the **TCP-ACK** scan and means that the port is accessible, but it cannot be determined whether it is open or closed.                                           |
 | `open\|filtered`   | If we do not get a response for a specific port, `Nmap` will set it to that state. This indicates that a firewall or packet filter may protect the port.                                                |
 | `closed\|filtered` | This state only occurs in the **IP ID idle** scans and indicates that it was impossible to determine if the scanned port is closed or filtered by a firewall.                                           |
-## Discovering Open TCP Ports
+### Discovering Open TCP Ports
 By default, `Nmap` scans the top 1,000 TCP ports w the SYN scan (`-sS`). This SYN scan is set only to default when run as root b/c of the socket perms req'd to create raw TCP packets. Otherwise, the TCP scan (`-sT`) is performed by default. This means that parameters are set automatically when ports and scanning methods are not defined. Define the ports one by one (`-p 22,25,80,139,445`), by range (`-p 22-445`), by top ports (`--top-ports=10`) from the `Nmap` db that have been signed as most freq, by scanning all ports (`-p-`), and by defining a fast port scans (`-F`), which contains the top 100 ports.
 ```scanning-top-10-tcp-ports
 $ sudo nmap 10.129.2.28 --top-ports=10 
@@ -200,7 +202,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.07 seconds
 | `-n`                 | Disables DNS resolution.             |
 | `--disable-arp-ping` | Disables ARP ping.                   |
 Reading the `SENT` line that you (`10.10.14.2`) sent a TCP packet w the `SYN` flag (`S`) to the target (`10.129.2.28`). The next `RCVD` line shows that the target responds w a TCP packet containing the `RST` and `ACK` flags (`RA`). `RST` and `ACK` flags are used to acknowledge the receipt of the TCP packet (`ACK`) and to end the TCP session (`RST`).
-### Request
+#### Request
 
 |**Message**|**Description**|
 |---|---|
@@ -210,7 +212,7 @@ Reading the `SENT` line that you (`10.10.14.2`) sent a TCP packet w the `SYN` fl
 |`10.129.2.28:21`|Shows the target IPv4 address and the target port.|
 |`S`|SYN flag of the sent TCP packet.|
 |`ttl=56 id=57322 iplen=44 seq=1699105818 win=1024 mss 1460`|Additional TCP Header parameters.|
-### Response
+#### Response
 
 |**Message**|**Description**|
 |---|---|
@@ -220,7 +222,7 @@ Reading the `SENT` line that you (`10.10.14.2`) sent a TCP packet w the `SYN` fl
 |`10.10.14.2:63090`|Shows our IPv4 address and the port that will be replied to.|
 |`RA`|RST and ACK flags of the sent TCP packet.|
 |`ttl=64 id=0 iplen=40 seq=0 win=0`|Additional TCP Header parameters.|
-### Connect Scan
+#### Connect Scan
  The Nmap [TCP Connect Scan](https://nmap.org/book/scan-methods-connect-scan.html) (`-sT`) uses the TCP three-way handshake to determine if a specific port on a target host is open or closed. The scan sends a `SYN` packet to the targget port and waits for a response. It is considered open if the target port responds w a `SYN-ACK` packet and closed it if responds w an `RST` packet.
 
 The `Connect` scan is useful b/c it is the most accurate way to determine the state of a port, and is also the most stealthy. Unlike other types of scans, sych as the `SYN` scan, the `Connect` scan does not leave any unfinished connections or unsent packets on the target host, which makes it less likely to be detected by the target's IDS/IPS. It is useful in mapping the network w/o disturbing the services running behind it, thus causing minimal impact and sometimes considered a more polite scan method.
@@ -228,7 +230,7 @@ The `Connect` scan is useful b/c it is the most accurate way to determine the st
 It is also useful when the target host has a personal firewall that drops incoming packets but allows outgoing packets. In this case, a `Connect` scan can bypass the firewall and accurately determine the target ports.
 >[!Note] Important Note
 >The `Connect` scan is slower than other types of scans b/c it req's the scanner to wait for a response from the target after each packet it sends, which could take some time if the target is busy or unresponsive.
-## Filtered Ports
+### Filtered Ports
 There are several reasons `Nmap` displays a port as filtered. In most cases, firewalls have certain rules set to handle specific connections. The packets can either be `dropped`, or `rejected`. When a packet gets dropped, `Nmap` receives no response from the target, and by default, the retry rate (`--max-retries`) is set to `1`. This means `Nmap` will resend the request to the target port to determine if the previous packet was not accidentally mishandled.
 
 Looking back at the 'scanning-top-10-tcp-ports' example, notice that in the example, TCP port **139** is labeled as `filtered`. To track how sent packets are handled, deactivate the ICMP echo requests (`-Pn`), DNS resolution (`-n`), and ARP ping scan (`--disable-arp-ping`) again:
@@ -283,7 +285,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.05 seconds
 | `--disable-arp-ping` | Disables ARP ping.                   |
 | `-Pn`                | Disables ICMP Echo requests.         |
 This time, the target sends an `ICMP` response w `type 3` and `error code 3`, which indicates that the desired port is unreachable. Nevertheless, knowing that a host is alive means it is safe to assume that the firewall on a port is rejecting the packets, and to take a closer look at this port later.
-## Discovering Open UDP Ports
+### Discovering Open UDP Ports
 Some sysadmins sometimes forget to filter the UDP ports in addition to the TCP ones. `UDP` is a `stateless protocol` and does not require a three-way handshake like TCP, meaning `Nmap` will not receive any acknowledgement. Consequently, the timeout is much longer, making the whole `UDP scan` (`-sU`) much slower than the `TCP scan` (`-sS`). An example of a UDP scan can look like the following:
 ```udp-port-scan
 $ sudo nmap 10.129.2.28 -F -sU
@@ -432,7 +434,7 @@ Nmap done: 1 IP address (1 host up) scanned in 6.55 seconds
 |`--reason`|Displays the reason a port is in a particular state.|
 |`-sV`|Performs a service scan.|
 More information about port scanning techniques we can find [here](https://nmap.org/book/man-port-scanning-techniques.html)
-# Saving the Results
+## Saving the Results
 While running various scans, it is best practice to save the results (side note, I answered one of the exercise questions by looking at a previous scan), which can be used later to examine the diffs b/w the diff scanning methods used. `Nmap` can save the results in 1 of 3 formats:
 - Normal output (`-oN`) w the `.nmap` file extension
 - Grepable output (`-oG`) w the `.gnmap` file extension
@@ -442,3 +444,74 @@ More information about the output formats can be found at: [https://nmap.org/bo
 #### Style sheets
 Use the following cmd to use the XML output to easily create HTML reports that are easy to read (even for non-technical people) and very useful for documentation:
 `$ xsltproc <result>.xml -o <name>.html`
+## Service Enumeration
+For pentesters, it is essential to determine the app and its version as accurately as possible. This info can be used to scan for known vulns and analyze the source code for that version. An exact version num allows a pentester to search for a more precise exploit that fits the service and the OS of their target.
+### Service Version Detection
+It is recommended to perform a quick port scan first, which gives a small overview of the avail ports. This causes significantly less traf, which is advantageous b/c otherwise it is possible to be discovered and blocked by the sec mechanisms. So, deal with these first and run a port scan in the background that shows all open ports (`-p-`). Then, use the version scan to scan the specific ports for services and their versions (`-sV`).
+
+A full port scan takes a v long time. To view the scan status, press the `[Space Bar]` during the scan.
+
+Another option to use is defining the intervals at which the status should be shown w `--stats-every=5s`. Here, specify the num of sec (`s`) or min (`m`), after which to show the status.
+
+Additionally, increasing the `verbosity level` (`-v`/`-vv`) will show the open ports whenever `Nmap` detects them.
+### Banner Grabbing
+Once the scan is complete, `Nmap` will show all TCP ports w the corresponding service and their versions that are active on the sys. Primarily, `Nmap` looks at the banners of the scanned ports and prints them out. If it cannot ID versions through the banners, `Nmap` attempts to ID them through a sig-based matching sys, but this significantly inc the scan's duration. One disadv to `Nmap`'s presented results is that the auto scan can miss some info b/c sometimes `Nmap` does not know how to handle it. Consider the following output:
+```example
+$ sudo nmap 10.129.2.28 -p- -sV -Pn -n --disable-arp-ping --packet-trace
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-16 20:10 CEST
+<SNIP>
+NSOCK INFO [0.4200s] nsock_trace_handler_callback(): Callback: READ SUCCESS for EID 18 [10.129.2.28:25] (35 bytes): 220 inlane ESMTP Postfix (Ubuntu)..
+Service scan match (Probe NULL matched with NULL line 3104): 10.129.2.28:25 is smtp.  Version: |Postfix smtpd|||
+NSOCK INFO [0.4200s] nsock_iod_delete(): nsock_iod_delete (IOD #1)
+Nmap scan report for 10.129.2.28
+Host is up (0.076s latency).
+
+PORT   STATE SERVICE VERSION
+25/tcp open  smtp    Postfix smtpd
+MAC Address: DE:AD:00:00:BE:EF (Intel Corporate)
+Service Info: Host:  inlane
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.47 seconds
+```
+
+|**Scanning Options**|**Description**|
+|---|---|
+|`10.129.2.28`|Scans the specified target.|
+|`-p-`|Scans all ports.|
+|`-sV`|Performs service version detection on specified ports.|
+|`-Pn`|Disables ICMP Echo requests.|
+|`-n`|Disables DNS resolution.|
+|`--disable-arp-ping`|Disables ARP ping.|
+|`--packet-trace`|Shows all packets sent and received.|
+Notice the line:
+- `NSOCK INFO [0.4200s] nsock_trace_handler_callback(): Callback: READ SUCCESS for EID 18 [10.129.2.28:25] (35 bytes): 220 inlane ESMTP Postfix (Ubuntu)..`
+Then, also notice the SMTP server on the target gives more info than `Nmap` showed. B/c of this, it is apparent that it is the `Ubuntu` Linux distro. After a successful three-way handshake, the server often sends a banner for ID. This serves to let the client know which service it is working w. At the network level, this happens w a `PSH` flag in the TCP header. However, it can happen that some services do not immediately provide such info. It is also possible to remove or manipulate the banners from the respective services. To see what `Nmap` didn't show, `manually` connect to the SMTP server using `nc`, grab the banner, and intercept the net traf using `tcpdump`:
+```tcpdump
+$ sudo tcpdump -i eth0 host 10.10.14.2 and 10.129.2.28
+
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+```
+```nc
+$  nc -nv 10.129.2.28 25
+
+Connection to 10.129.2.28 port 25 [tcp/*] succeeded!
+220 inlane ESMTP Postfix (Ubuntu)
+```
+```tcpdump-intercepted-traffic
+18:28:07.128564 IP 10.10.14.2.59618 > 10.129.2.28.smtp: Flags [S], seq 1798872233, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 331260178 ecr 0,sackOK,eol], length 0
+18:28:07.255151 IP 10.129.2.28.smtp > 10.10.14.2.59618: Flags [S.], seq 1130574379, ack 1798872234, win 65160, options [mss 1460,sackOK,TS val 1800383922 ecr 331260178,nop,wscale 7], length 0
+18:28:07.255281 IP 10.10.14.2.59618 > 10.129.2.28.smtp: Flags [.], ack 1, win 2058, options [nop,nop,TS val 331260304 ecr 1800383922], length 0
+18:28:07.319306 IP 10.129.2.28.smtp > 10.10.14.2.59618: Flags [P.], seq 1:36, ack 1, win 510, options [nop,nop,TS val 1800383985 ecr 331260304], length 35: SMTP: 220 inlane ESMTP Postfix (Ubuntu)
+18:28:07.319426 IP 10.10.14.2.59618 > 10.129.2.28.smtp: Flags [.], ack 36, win 2058, options [nop,nop,TS val 331260368 ecr 1800383985], length 0
+```
+The first three lines show us the three-way handshake.
+1. `[SYN]` `18:28:07.128564 IP 10.10.14.2.59618 > 10.129.2.28.smtp: Flags [S], <SNIP>`
+2. `[SYN-ACK]` `18:28:07.255151 IP 10.129.2.28.smtp > 10.10.14.2.59618: Flags [S.], <SNIP>`
+3. `[ACK]` `18:28:07.255281 IP 10.10.14.2.59618 > 10.129.2.28.smtp: Flags [.], <SNIP>`
+After that, the target SMTP server send a TCP pkt w the `PSH` and `ACK` flags, where `PSH` states that the target server is sending data back and w `ACK` simultaneously informs that all req data has been sent.
+4. `[PSH-ACK]` `18:28:07.319306 IP 10.129.2.28.smtp > 10.10.14.2.59618: Flags [P.], <SNIP>`
+The last TCP packet that we sent confirms the receipt of the data with an `ACK`.
+5. `[ACK]` `18:28:07.319426 IP 10.10.14.2.59618 > 10.129.2.28.smtp: Flags [.], <SNIP>`

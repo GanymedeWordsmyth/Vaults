@@ -1,3 +1,5 @@
+When crafting a sorcerer, the player chooses one of [[The Endless]]. The one they choose need not be of the list. [[The Endless]] are basically concepts of humanity; love, happiness, death, despair. After choosing one of [[The Endless]], the player chooses the theme of power their sorcerer would have and how that would manifest.
+
 Sorcerers in [[Baile]] are hunted by witch hunters
 Slurs
 	Hagborn, Wormeater, Plague'd One, Harbinger, Witch, Witchborn

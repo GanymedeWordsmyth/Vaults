@@ -27,7 +27,7 @@ Suppose you have access to the machine `MS02`, and you need to download a file f
 ### PowerShell Base64 Encode & Decode
 Depending on the file size we want to transfer, it is possible to use diff methods that do not req net comms. If terminal access is needed, encode a file to a base64 string, copy its contents from the terminal and perform the reverse operation, decoding the file in the original content.
 
-An essential step in using this method is to ensure the file you encode and decode is correct. We can use[md5sum](https://man7.org/linux/man-pages/man1/md5sum.1.html), a program that calcs and verifies 128-bit MD5 checksums. The MD5 hash functions as a compact digital fingerprint of a file, meaning a file should have the same MD5 hash everywhere. The following cmd attempts to transfer a sample ssh key:
+An essential step in using this method is to ensure the file you encode and decode is correct. We can use [md5sum](https://man7.org/linux/man-pages/man1/md5sum.1.html), a program that calcs and verifies 128-bit MD5 checksums. The MD5 hash functions as a compact digital fingerprint of a file, meaning a file should have the same MD5 hash everywhere. The following cmd attempts to transfer a sample ssh key:
 ```pwnbox-check-ssh-key-md5-hash
 $ md5sum id_rsa
 

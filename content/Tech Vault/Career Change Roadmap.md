@@ -1,3 +1,14 @@
+Bartending on resume: 
+	Soft skills
+	Good at pivoting
+		Thinking quickly
+		Improvising
+		Staying calm in stressful situations
+		Self teaching
+		Multitasking
+		Organization
+		De-escalation 
+
 Tech Industry Transition Roadmap
 Goals
 Cybersec w/ focus on embedded systems

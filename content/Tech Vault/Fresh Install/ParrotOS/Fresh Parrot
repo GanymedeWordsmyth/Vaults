@@ -23,8 +23,8 @@ echo
 cd ~/
 cp ~/.bashrc ~/.bashrc.bak
 # terminal adjustment
-echo 'stty columns 1000' >> .bashrc
-echo 'export PS1="\[\e[91m\]┌──[\[\e[0;39m\]\D{%Y-%m-%d %a}\[\e[93m\]-\[\e[96m\]\t\[\e[91m\]]─[\[\e[0;39m\]\u\[\e[93m\]@\[\e[96m\]\h\[\e[91m\]]─[\[\e[33m\]\w\[\e[91m\]]\[\e[93m\]\n\[\e[91m\]└──╼[\[\e[0m\]~~~{\e[38;5;88m\]@\e[91m\]]\e[93m\]$\[\e[0m\] "' >> .bashrc
+#echo 'stty columns 1000' >> .bashrc
+echo "export PS1='\[\e[91m\]┌──[\[\e[0;39m\]\D{%Y-%m-%d %a}\[\e[93m\]-\[\e[96m\]\t\[\e[91m\]]─[\[\e[0;39m\]\u\[\e[93m\]@\[\e[96m\]\h\[\e[91m\]]─[\[\e[33m\]\w\[\e[91m\]]\n└──╼[\[\e[0m\]~~~{\[\e[38;5;88m\]@\[\e[91m\]]\[\e[93m\]\$\[\e[0m\] '" >> .bashrc
 # add startup script for trackpad
 cp "$(dirname "$0")"/startup.script /etc/systemd/system/
 # Modify touchpad immediately

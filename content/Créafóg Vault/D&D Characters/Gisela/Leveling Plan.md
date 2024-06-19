@@ -29,11 +29,12 @@ Warlock of the Undying Raven Queen
 	Level 1:
 		Pact Magic
 			2x Cantrips
-				Mind Sliver
+				Gust
 				Minor Illusion
 			2x Spells Known
-			1x First level spell slot
-			Slot level = 1
+				Charm person
+				Expeditious retreat
+			1x Level 1 spell slot
 		Expanded Spell List
 			The following spells are added to the warlock spell list:
 				1st - [false life](https://5e.tools/spells.html#false%20life_phb), [ray of sickness](https://5e.tools/spells.html#ray%20of%20sickness_phb)
@@ -52,32 +53,68 @@ Warlock of the Undying Raven Queen
 		Pact Magic
 			2x Cantrips
 			3x Spells
-			2x Slots
-			Slot level = 1
+				+ Hex
+			2x Level 1 slots
 			2x Invocations Known
+				Eldritch Mind
+				Armor of Shadows
 		Eldritch Invocations
 	Level 3:
 		Pact Magic
 			2x Cantips
 			4x Spells
-			2x Slots
-			Slot level = 2
+				+Borrowed Knowledge
+			2x Level 2 slots
 			2x Invoc
+				Armor of Shadows > Book of Ancient Secrets
+					Ceremony
+					Find Familiar
 		Pact Boon = Pact of the Tome
 			3x Cantrips from any class list. 
+				Encode Thoughts
+				Gust Barrier (?)
+				Sapping Sting
 	Level 4:
 		Pact Magic
 			3x Cantrips
+				+Mage Hand
 			5x Spells
-			2x Slots
-			Slot level = 2
+				+Suggestion
+			2x level 2 slots
 			2x Invoc
-		ASI
+				Eldritch Mind > Aspect of the Moon
+		ASI - Telepathic
 		Eldritch Versatility
 	Level 5: 
 		Pact Magic
 			3x Cantrips
-			5x Spells
-			2x Slots
-			Slot level = 2
-			2x Invoc
+			6x Spells
+				+Tongues
+			2x Level 3 slots
+			3x Invoc
+				Undying Servitude
+	Level 6:
+		Pact Magic
+			3x Cantrips
+			7x Spells
+				+1
+			2x Level 3 Slots
+			3x Invoc
+		Defy Death (1/LR)
+			Succeed on death save gives 1d8+Con mod HP
+			Spare the Dying on creature gives 1d8+Con mod HP
+	Level 7:
+		Pact Magic
+			3x Cantrips
+			8x Spells
+				+Consume Mind
+			2x Level 4 Slots
+			4x Invoc
+				+Trickster's Escape
+	Level 8:
+		Pact Magic
+			3x Cantrips
+			9x Spells
+				+1
+			4x Invoc
+		ASI

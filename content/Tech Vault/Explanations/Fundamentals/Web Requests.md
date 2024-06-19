@@ -447,3 +447,131 @@ This confirms that direct search fc interaction is possible w/o needing to login
 >Try to repeat to above request w/o adding the cookie or content-type headers, and see how the web app would act differently.
 
 Finally, repeat the same above request by using `Fetch`. Right-click on the request and select `Copy>Copy as Fetch`, and then go to the `Console` tab and exec the code there:![[Pasted image 20240610162522.png]]The request successfully returns the same data recv'd w cURL. `Try to search for diff cities by directly interacting w the search.php through Fetch or cURL.`
+## CRUD API
+This section demonstrates how to leverage APIs to perform what has been discussed in the HTTP Methods chapter of this module by directly interacting the the API endpoint.
+### APIs
+There are several types of APIs. Many APIs are used to interact w a db, such that it is common to be able to specify the requested table and the requested row w/i the API query, and then use an HTTP method to perform the op needed e.g. for the `api.php` endpoint, to update the `city` table in the db, and the row that will be updated has the city name of `london`, then the URL would look something like this: `$ curl -X PUT http://<SERVER_IP>:<PORT>/api.php/city/london ...SNIP...`
+### CRUD
+As demonstrated, it's easy to specify the table and the row to perform an op on through such APIs. Then, leverage diff HTTP methods to perform diff ops on that row. In general, APIs perform 4 main ops on the requested db entity:
+
+| **Operation** | **HTTP Method** | **Description**                              |
+| ------------- | --------------- | -------------------------------------------- |
+| `Create`      | `POST`          | Adds the specific data to the db table       |
+| `Read`        | `Get`           | Reads the specified entity from the db table |
+| `Update`      | `PUT`           | Updates the data of the specified db table   |
+| `Delete`      | `DELETE`        | Removes the specified row from the db table  |
+These four ops are mainly linked to the commonly known CRUD APIs, but the same principle is also used in REST APIs and several other APIs. Of course, not all APIs work in the same way, and the user access ctrl will limit what actions can be performed and what results can be seen during an assessment. The [[Intro to Web Apps]] module further explains these concepts, so feel free to refer to it for more details about APIs and their usage.
+### Create
+To add a new entry, use and HTTP POST request, which is quite similar to what was demonstrated in the previous section. Simply POST the JSON data, and it will be added to the table. As this API is using JSON data, set the `Content-Type` header to JSON, as follows:
+`$ curl -X POST http://<SERVER_IP>:<PORT>/api.php/city/ -d '{"city_name":"HTB_City", "country_name":"HTB"}' -H 'Content-Type: application/json'`
+Now to read the content of the city that was added (`HTB_City`), to see if it was successfully added:
+```shell
+$ curl -s http://<SERVER_IP>:<PORT>/api.php/city/HTB_City | jq
+
+[
+  {
+    "city_name": "HTB_City",
+    "country_name": "HTB"
+  }
+]
+```
+This confirms that a new city was created, which did not exist before.
+>[!Exercise]
+>Try adding a new city through the browser devtools, by using one of the Fetch POST requests used in the previous section.
+## Read
+The first thing to do when interacting w an API is reading data. As mentioned earlier, simply specify the tbl name after the API (e.g. `/city`) and then specify the search term (e.g. `/london`), as follows:
+```shell
+$ curl http://<SERVER_IP>:<PORT>/api.php/city/london
+
+[{"city_name":"London","country_name":"(UK)"}]
+```
+Note that the result is sent as a JSON str. To have it properly formatted in JSON format, pipe the output to the `jq` util, which will format it properly. In this instance, use the `-s` flag to silence any unneeded cURL output, as follows:
+```shell
+$ curl -s http://<SERVER_IP>:<PORT>/api.php/city/london | jq
+
+[
+  {
+    "city_name": "London",
+    "country_name": "(UK)"
+  }
+]
+```
+Note that the output was recv'd in a nicely formatted output. Search terms can also be provided to get all matching results:
+```shell
+$ curl -s http://<SERVER_IP>:<PORT>/api.php/city/le | jq
+
+[
+  {
+    "city_name": "Leeds",
+    "country_name": "(UK)"
+  },
+  {
+    "city_name": "Dudley",
+    "country_name": "(UK)"
+  },
+  {
+    "city_name": "Leicester",
+    "country_name": "(UK)"
+  },
+  ...SNIP...
+]
+```
+Finally, passing an empty str will retrieve all entries in the tbl:
+```shell
+$ curl -s http://<SERVER_IP>:<PORT>/api.php/city/ | jq
+
+[
+  {
+    "city_name": "London",
+    "country_name": "(UK)"
+  },
+  {
+    "city_name": "Birmingham",
+    "country_name": "(UK)"
+  },
+  {
+    "city_name": "Leeds",
+    "country_name": "(UK)"
+  },
+  ...SNIP...
+]
+```
+>[!Exercise]
+>Try visiting any of the above links using your browser, to see how the result is rendered.
+### Update
+After reviewing how to read and write entries through APIs, it is time to discuss the other two HTTP methods: `PUT` and `DELETE`. As mentioned at the beginning of the section, `PUT` is used to update API entries and mod their details, while `DELETE` is used to rm a specific entity.
+>[!Note]
+>The HTTP `PATCH` method may also be used to update API entries instead of `PUT`. To be precise, `PATCH` is used to partially update an entry (i.e. mod some of its data, e.g. only city_name), while `PUT` is used to update the entire entry. The HTTP `OPTIONS` method can also be used to see which of the two is accepted by the server, and then use the appropriate method accordingly. This section will focus on the `PUT` method, though their usage is quite similar.
+
+Using `PUT` is similar to `POST` in this case, w the only diff being that the name of the entity to be edited has to be specified in the URL, otherwise the API will not know which entity to edit. So, just specify the `city` name in the URL, change the request method to `PUT`, and provide the JSON data like in the `POST` cmd, as follows:
+`$ curl -X PUT http://<SERVER_IP>:<PORT>/api.php/city/london -d '{"city_name":"New_HTB_City", "country_name":"HTB"}' -H 'Content-Type: application/json'`
+This example shows the first step was to specify the city as `/city/london`, and passed a JSON str that contained `"city_name":"New_HTB_City"` in the request data. So, now the `london` city should no longer exist, and a new city w the name `New_HTB_City` should exist, instead. Use the following cmd to confirm:
+```shell
+$ curl -s http://<SERVER_IP>:<PORT>/api.php/city/london | jq
+```
+```shell
+$ curl -s http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City | jq
+
+[
+  {
+    "city_name": "New_HTB_City",
+    "country_name": "HTB"
+  }
+]
+```
+Indeed, the first cmd returns nothing, and the second shows that the old city name was successfully replaced w the new city.
+>[!Note]
+>In some APIs, the `Update` op may be used to create new entries as well. Basically, when sending data, if it does not exist, `Update` would create it e.g. in the above example, even if an entry w a `london` city did not exist, it would create a new entry w the details passed. In the above example, this is not the case. Try to `Update` a non-existing city and see what you would get.
+### DELETE
+Finally, deleting a city is as easy as reading one. Simply specify the city name for the API and use the HTTP `DELETE` method, and it would delete the entry, as in the following cmd:
+`$ curl -X DELETE http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City`
+Then, use the cmd learned earlier to confirm it was deleted:
+```shell
+$ curl -s http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City | jq
+[]
+```
+This time, the cmd outputed an empty array when trying to read `New_HTB_City`, meaning it no longer exists.
+>[!Exercise]
+>Delete any of the cities you added earlier through POST requests, and then read all entries to confirm that they were successfully deleted.
+
+In a real web app, such actions may not be allowed for all users, or it would be considered a vuln if anyone can mod or del any entry. Each user would have certain privs on what they can `read` or `write`, where `write` refers to adding, modding, or del'ing data. To auth a user to use the API, you'd need to pass a cookie or an auth header (e.g. `JWT`), as was seen in an earlier section. Other than that, the ops are similar to what was practiced in this section.

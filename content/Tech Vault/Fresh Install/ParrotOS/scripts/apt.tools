@@ -19,3 +19,4 @@ wordlists
 openvpn
 lxc
 lxc-utils
+jq

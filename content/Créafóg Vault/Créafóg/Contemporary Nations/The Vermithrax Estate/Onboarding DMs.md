@@ -1,0 +1,1 @@
+DMs being onboarded should make some kind of aspect of the estate. Whether it's a series of books in the library that needs to be found, a brief history of factions within the Parcel that is relevant to the story, or something else. It has to cover two rules: it needs to be something personal to that DM that they will care about, and two it needs to be relevant.

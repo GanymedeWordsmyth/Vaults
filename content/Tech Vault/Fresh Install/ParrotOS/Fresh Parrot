@@ -81,6 +81,14 @@ echo
 #cp "$(dirname "$0")"/startup.sh ~/startup.sh
 #chmod +x ~/startup.sh
 
+# Config keyboard layout
+# make backup of original pc config file
+cp -n /usr/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc.bck
+# copy new pc config file
+cp /scripts/pc /usr/share/X11/xkb/symbols/
+# update config
+rm -rf /var/lib/xkb/*
+
 # another cleanup
 #mv /etc/apt/sources.list.d/parrot.list.bak /etc/apt/sources.list.d/parrot.list #4of5 this puts everything back to the way it's supposed to be.
 #mv /etc/apt/sources.list.bak /etc/apt/sources.list #5of5 puts back apt's sources.list

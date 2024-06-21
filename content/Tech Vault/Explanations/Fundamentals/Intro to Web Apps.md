@@ -526,15 +526,179 @@ A [web server](https://en.wikipedia.org/wiki/Web_server) is an app that runs on 
 ### Workflow
 At typical web server accepts HTTP requests from the client-side, and responds w diff HTTP responses and codes, like a code `200 OK` response for a successful request, a code `404 NOT FOUND` when requesting pg's that do not exist, code `403 FORBIDDEN` for requesting access to a restricted pgs, and so on.![[Pasted image 20240618184432.png]]The following are some of the most common [HTTP response codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status):
 
-| **Code**                    | **Description**                                                                                          |
-| --------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `200 OK`                    | The request has succeeded                                                                                |
-| `301 Moved Permanently`     | The URL of the requested resource has been changed permanently                                           |
-| `302 Found`                 | The URL of the requested resource has been changed temporarily                                           |
-| `400 Bad Request`           | The server could not understand the request due to invalid syntax                                        |
-| `401 Unauthorized`          | Unauthenticated attempt to access pg                                                                     |
-| `403 Forbidden`             | The client does not have access rights to the content                                                    |
-| `404 Not Found`             | The server can not find the requested resource                                                           |
-| `405 Method Not Allowed`    | The request method is known by the server but has been disabled and cannot be used                       |
-| `408 Request Timeout`       | This response is sent on an idle connection by some servers, even w/o any previous request by the client |
-| `500 Internal Server Error` |                                                                                                          |
+| **Code**                    | **Description**                                                                                                   |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `200 OK`                    | The request has succeeded                                                                                         |
+| `301 Moved Permanently`     | The URL of the requested resource has been changed permanently                                                    |
+| `302 Found`                 | The URL of the requested resource has been changed temporarily                                                    |
+| `400 Bad Request`           | The server could not understand the request due to invalid syntax                                                 |
+| `401 Unauthorized`          | Unauthenticated attempt to access pg                                                                              |
+| `403 Forbidden`             | The client does not have access rights to the content                                                             |
+| `404 Not Found`             | The server can not find the requested resource                                                                    |
+| `405 Method Not Allowed`    | The request method is known by the server but has been disabled and cannot be used                                |
+| `408 Request Timeout`       | This response is sent on an idle connection by some servers, even w/o any previous request by the client          |
+| `500 Internal Server Error` | The server has encountered a situation it doesn't know how to handle                                              |
+| `502 Bad Gateway`           | The server, while working as a gateway to get a response needed to handle the request, recv'd an invalid response |
+| `504 Gateway Timeout`       | The server is acting as a gateway and cannot get a response in time                                               |
+Web servers also accept various types of user input w/i HTTP requests, including text, [JSON](https://www.w3schools.com/js/js_json_intro.asp), and even bin data (e.g. for file uploads). Once a web server recv's a web request, it is then responsible for routing it to its dest, run any proc's needed for that request, and return the response to the user on the client-side. The pgs and files that the web server proc's and route traf to are the web app core files.
+
+The following shows an example of requesting a pg in a Linux terminal using the [cURL](https://en.wikipedia.org/wiki/CURL) util, and recv'ing the server response while using the `-I` flag, which displays the following headers:
+```shell
+$ curl -I https://academy.hackthebox.com
+
+HTTP/2 200
+date: Tue, 15 Dec 2020 19:54:29 GMT
+content-type: text/html; charset=UTF-8
+...SNIP...
+```
+While this `cURL` cmd example shows the source code of the webpage:
+```shell
+$ curl https://academy.hackthebox.com
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cyber Security Training : HTB Academy</title>
+<meta name="viewport" content="width=device=width, initial-scale=1.0">
+```
+Many web server types can be util'd to run web apps. Most of these can handle all types of complex HTTP requests, and they are usually free of charge. It's also possible to develop a custom basic web server using langs such as `Python`, `JS`, and `PHP`. However, for each lang, there's a popular web app that is optimized for handling large amts of web traf, which saves time in creating a custom built web server.
+### Apache
+![[Pasted image 20240620170940.png]][Apache](https://www.apache.org/), or `httpd`, is the most common web server on the internet, hosting more than `40%` of all internet websites. `Apache` usually comes pre-installed in most `Linux` distros and can also be installed on Win and macOS servers.
+
+`Apache` is usually used w `PHP` for web app dev, but it also supports other langs like `.Net`, `Python`, `Perl`, and even OS langs like `Bash` through `CGI`. Users can install a wide variety of `Apache` modules to extended its fn'ality and support more langs e.g. to support serving `PHP` files, users must install `PHP` on the back end server, in addition to installing the `mod_php` module for `Apache`.
+
+`Apache` is a FOSS proj, and community users can access its source code to fix issues and look for vulns. It is well-maintained and regularly patched against vulns to keep it safe against exploitation. Furthermore, it is v well doc'd, making using and conf'ing dif parts of the webserver relatively easy. `Apache` is commonly used by startups and smaller co's, as it is straightforward to dev for. Still, some big co's, like `Apple`, `Adobe`, and `Baidu`, util `Apache`.
+### NGINX
+![[Pasted image 20240620190829.png]]
+[NGINX](https://www.nginx.com/) is the second most common web server on the internet, hosting roughly `30%` of all internet websites. `NGINX` focuses on serving many concurrent web requests w relatively low mem and CPU load by util'ing an async archt to do so. This makes `NGINX` a v reliable web server for popular web apps and top businesses worldwide, which is why it is the most popular web server among high traf websites, w around 60% of the top 100,000 websites using `NGINX`.
+
+`NGINX` is foss, which gives all the same benefits previously mentioned, like sec and reliability. Some popular websites the util `NGINX` includes: `Google`, `Facebook`, `Twitter`, `Cisco`, `Intel`, `Netflix`, and `HackTheBox`.
+### IIS
+![[Pasted image 20240620224541.png]][ISS (Internet Information Services)](https://en.wikipedia.org/wiki/Internet_Information_Services) is the third most common web server on the internet, hosting around `15%` of all internet web sites. `IIS` is dev'd an maintained by Microsoft and mainly runs on Microsoft Windows Servers. `IIS` is usually used to host web apps dev'd for the Microsoft .NET framework, but can also be used to host web apps dev'd in other langs like `PHP`, or host other types of services like `FTP`. Furthermore, `IIS` is v well optimized for AD integration and includes feats like `Windows Auth` for auth'ing users using AD, allowing them to auto-sign in to web apps.
+
+Though not the most popular web server, many big orgs use `IIS` as their web server. Many of them use Windows Server on their back end or rely heavily on AD w/i their org. Some popular websites util IIS include: `Microsoft`, `Office365`, `Skype`, `Stack Overflow`, and `Dell`.
+### Others
+Aside from these 3 webservers, there are many other commonly used web servers, like [Apache Tomcat](https://tomcat.apache.org/) for `Java` web apps, and [Node.JS](https://nodejs.org/en/) for web apps dev'd using `JS` on the back end.
+## Databases
+Web apps util back end [databases (db)](https://en.wikipedia.org/wiki/Database) to store various content and info related to the web app. This can be core web app assets like imgs and files, web app content like posts and updates, or user data like usernames and passwds. This allows web apps to easily and quickly store and retrieve data and enable dynamic content that is dif for each user.
+
+There are many dif types of dbs, each of which fits a certain type of use. Most devs look for certain char'istics in a db, such as `speed` in storing and retrieving data, `size` when storing large amts of data, `scalability` as the web app grows, and `cost`.
+### Relational (SQL)
+[Relational (SQL) databases](https://en.wikipedia.org/wiki/Relational_database) store their data in tables, rows, and columns. Each table can have unique keys, which can link tbls together and create relationships b/w tbls.
+
+For example, suppose there is a `users` table in a RDB containing columns like `id`, `username`, `first_name`, `last_name`, and so on. The `id` can be used as the tbl key, Another tbl, `posts`, may contain posts made by all users, w columns like `id`, `user_id`, `date`, `content`, and so on.![[Pasted image 20240620232206.png]]The `id` column from the `users` table can be linked to the `user_id` in the `posts` table to easily retrieve the user details for each post, w/o having to store all user details w each post.
+
+A tbl can have more than one key, as another column can be used as a key to link w another tbl e.g. the `id` column can be used as a key to link the `posts` tbl to another tbl containing cmts, each of which belongs to a certain post, and so on.
+
+`The relationship b/w tbls w/i a db is called a Schema.`
+
+This way, by using relational dbs, it becomes v quick and easy to retrieve all data about a certain element from all dbs e.g. a single query can be used to retrieve all details linked to a certain user from all tbls. This makes relational dbs v fast and reliable for big datasets that have a clear structure and design. Dbs also make data mngment v efficient.
+
+Some of the most common relational dbs include:
+
+| **Type**                                                    | **Description**                                                                                                                                                                               |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [MySQL](https://en.wikipedia.org/wiki/MySQL)                | The most commonly used database around the internet. It is an open-source database and can be used completely free of charge                                                                  |
+| [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) | Microsoft's implementation of a relational database. Widely used with Windows Servers and IIS web servers                                                                                     |
+| [Oracle](https://en.wikipedia.org/wiki/Oracle_Database)     | A very reliable database for big businesses, and is frequently updated with innovative database solutions to make it faster and more reliable. It can be costly, even for big businesses      |
+| [PostgreSQL](https://en.wikipedia.org/wiki/PostgreSQL)      | Another free and open-source relational database. It is designed to be easily extensible, enabling adding advanced new features without needing a major change to the initial database design |
+Other common SQL databases include: `SQLite`, `MariaDB`, `Amazon Aurora`, and `Azure SQL`.
+### Non-relational (NoSQL)
+A [non-relational database](https://en.wikipedia.org/wiki/NoSQL) does not use tbls, rows, columns, primary keys, relationships, or schemas. Instead, a `NoSQL` db stores data using various strg models, depending on the type of data stored.
+
+Due to the lack of a def'd structure for the db, `NoSQL` dbs are v scalable and flexible. When dealing w datasets that are not v well defined and structured, a `NoSQL` db would be the best choise for storing data.
+
+There are 4 common strg models for `NoSQL` dbs:
+- Key-Value
+- Document-Based
+- Wide-Column
+- Graph
+Each of the above models has a dif way of storing data e.g. the `Key-Value` model usually stores data in `JSON` or `XML`, and has a key for each pair, storing all of its data as its val:![[Pasted image 20240620233311.png]]The above example can be represented using `JSON` as follows:
+```json
+{
+	"100001": {
+		"date": "01-01-2021",
+		"content": "Welcome to this web application."
+	},
+	"100002": {
+		"date": "02-01-2021",
+		"content": "This is the first post on this web app."
+	},
+	"100003": {
+		"date": "02-01-2021",
+		"content": "Reminder: Tomorrow is the ..."
+	}
+}
+```
+It looks similar to a dict/map/key-val pair in langs like `Python` or `PHP` (i.e. `{'key':'value'}`), where the `key` is usually a str, and the `value` can be a str, dict, or any class obj.
+
+The `Document-Based` model stores data in complex `JSON` objs and each obj has certain meta-data while storing the rest of the data similarly to the `Key-Value` model.
+
+Some of the most common `NoSQL` dbs include:
+
+| **Type**                                                           | **Description**                                                                                                                                                                                  |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [MongoDB](https://en.wikipedia.org/wiki/MongoDB)                   | The most common `NoSQL` database. It is free and open-source, uses the `Document-Based` model, and stores data in `JSON` objects                                                                 |
+| [ElasticSearch](https://en.wikipedia.org/wiki/Elasticsearch)       | Another free and open-source `NoSQL` database. It is optimized for storing and analyzing huge datasets. As its name suggests, searching for data within this database is very fast and efficient |
+| [Apache Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra) | Also free and open-source. It is very scalable and is optimized for gracefully handling faulty values                                                                                            |
+Other common `NoSQL` databases include: `Redis`, `Neo4j`, `CouchDB`, and `Amazon DynamoDB`.
+### Use in Web Apps
+Most modern web dev langs and frameworks make it easy to integrate, store, and retrieve data from various db types. But first, the db has to be installed and set up on the backend server, and once it is up and running, the web apps can start util'g it to store and retrieve data.
+
+For example, w/i a `PHP` web app, once `MySQL` is up and running, the following cmd can be used to connect to the db:
+```php
+$conn = new mysqli("localhost", "user", "pass");
+```
+Then, the following cmd creates a new db:
+```php
+$sql = "CREATE DATABASE database1";
+$conn->query($sql)
+```
+After that, use this cmd to connect to the new db, and start using the `MySQL` db through `MySQL` syntax, right w/i `PHP`:
+```php
+$conn = new mysqli("localhost", "user", "pass", "database1");
+$query = "select * from table_1";
+$result = $conn->query($query);
+```
+Web apps usually use user-input when retrieving data e.g. when a user uses the search fn to search for other users, their search input is passed to the web app, which uses the input to search w/i the db(s).
+```php
+$searchInput = $_POST['findUser'];
+$query = "select * from users where name like '%$searchInput%'";
+$result = $conn->query($query);
+```
+Finally, the web app sends the result back to the user:
+```php
+while($row = $result->fetch_assoc() ){
+	echo $row["name"]."<br>";
+}
+```
+This basic example shows how easy it is to util dbs. However, if not sec coded, db code can lead to a variety of issues, like [SQL Injection Vulns](https://owasp.org/www-community/attacks/SQL_Injection).
+## Development Frameworks & APIs
+In addition to web servers that can host web apps in various langs, there are many common web dev frameworks that help in dev'g core web app files and fn'y. W the inc'g complexity of web apps, it may be challenging to create a modern and sophisticated web app from scratch. Hence, most of the popular web apps are dev'd using web frameworks.
+
+As most web apps share common fn'ality, such as user reg, web dev't frameworks make it easy to quickly implement this fn'ality and link them to the front end components, making a fully fn'al web app. Some of the most common web dev frameworks. Some of the most common web dev frameworks include:
+- [Laravel](https://laravel.com/) (`PHP`): usually used by startups and smaller companies, as it is powerful yet easy to develop for.
+- [Express](https://expressjs.com/) (`Node.JS`): used by `PayPal`, `Yahoo`, `Uber`, `IBM`, and `MySpace`.
+- [Django](https://www.djangoproject.com/) (`Python`): used by `Google`, `YouTube`, `Instagram`, `Mozilla`, and `Pinterest`.
+- [Rails](https://rubyonrails.org/) (`Ruby`): used by `GitHub`, `Hulu`, `Twitch`, `Airbnb`, and even `Twitter` in the past.
+
+> It should be noted that popular websites usually util'z a variety of frameworks and web servers, rather than just one.
+
+### APIs
+An important aspect of back end web app dev't is the use of Web [APIs](https://en.wikipedia.org/wiki/API) and HTTP Request param's to connect the front end and the back end to be able to send data back and forth b/w front end and back end components and carry out various fn's w/i the web app.
+
+For the frontend component to interact w the backend and ask for certain tasks to be carried out, they util APIs to ask the backend component for a specific task w specific input. The backend components proc these requests, perform the nec fn's, and return a certain response to the frontend components, which finally renders the end-user's output on the client-side.
+#### Query Parameters
+The default method of sending specific args to a web pg is throug h`GET` and `POST` request params. This allows the frontend components to specify vals for certain params used w/i the pg for the back end components to proc them and respond accordingly.
+
+For example, a `/search.php` pg would take an `item` param, which may be used to specify the search item. Passing a param through a `GET` request is done through the URL `/search.php?item=apples`, while `POST` params are passed through `POST` data at the bottom of the `POST HTTP` request:
+```http
+POST /search.php HTTP/1.1
+...SNIP...
+
+item=apples
+```
+Query params allow a single pg to recv various types of input, each of which can be proc'd dif'y. For certain other scenarios, Web APIs may be much quicker and more efficient to use. The [Web Requests module](https://academy.hackthebox.com/course/preview/web-requests) takes a deeper dive into `HTTP` requests.
+### Web APIs
+An [Application Programming Interface (API)](https://en.wikipedia.org/wiki/API) is an interface w/i an application that specifies how the app can interact w other apps. For Web Apps, it is what allows remote access to fn'ality on backend components. APIs are not exclusive to web apps and are used for software apps in general. Web APIs are usually accessed o/ the `HTTP` protocol and are usually handled and translated through web servers. ![[Pasted image 20240621151738.png]]A weather web application, for example, may have a certain API to retrieve the current weather for a certain city.

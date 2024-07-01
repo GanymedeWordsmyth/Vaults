@@ -701,4 +701,158 @@ item=apples
 ```
 Query params allow a single pg to recv various types of input, each of which can be proc'd dif'y. For certain other scenarios, Web APIs may be much quicker and more efficient to use. The [Web Requests module](https://academy.hackthebox.com/course/preview/web-requests) takes a deeper dive into `HTTP` requests.
 ### Web APIs
-An [Application Programming Interface (API)](https://en.wikipedia.org/wiki/API) is an interface w/i an application that specifies how the app can interact w other apps. For Web Apps, it is what allows remote access to fn'ality on backend components. APIs are not exclusive to web apps and are used for software apps in general. Web APIs are usually accessed o/ the `HTTP` protocol and are usually handled and translated through web servers. ![[Pasted image 20240621151738.png]]A weather web application, for example, may have a certain API to retrieve the current weather for a certain city.
+An [Application Programming Interface (API)](https://en.wikipedia.org/wiki/API) is an interface w/i an application that specifies how the app can interact w other apps. For Web Apps, it is what allows remote access to fn'ality on backend components. APIs are not exclusive to web apps and are used for software apps in general. Web APIs are usually accessed o/ the `HTTP` protocol and are usually handled and translated through web servers. ![[Pasted image 20240621151738.png]]A weather web application, for example, may have a certain API to retrieve the current weather for a certain city. The API can be requested then pass the name name or city ID, and it would return the current weather in a `JSON` obj. Another example is Twitter's API, which allows users to retrieve the latest Tweets from a certain acct in `XML` or `JSON` formats, and even allows users to send a Tweet 'if authenticated', and so on.
+
+To enable the use of APIs w/i a web app, devs have to dev this fn'ality on the backend of the web app by using the API std's like `SOAP` or `REST`.
+#### SOAP
+The [Simple Objects Access (SOAP)](https://en.wikipedia.org/wiki/SOAP) std shares data through `XML`, where the request is made in `XML` through an HTTP request, and the response is also returned in `XML`. Frontend components are designed to parse this `XML` output properly. The following is an example `SOAP` msg:
+```xml
+<?xml version="1.0"?>
+
+<soap:Envelope
+xmlns:soap="http://www.example.com/soap/soap"
+soap:encodingStyle="http://www/w3.org/soap/soap-encoding">
+
+<soap:Header>
+</soap:Header>
+
+<soap:Body>
+	<soap:Fault>
+	</soap:Faulth>
+</soap:Body>
+```
+`SOAP` is very useful for transferring structured data (e.g. an entire class obj), or even bin data, and is often used w serialized objs, all of which enables sharing data b/w frontend and backend components and parsing it properly. It is also v useful for sharing _stateful_ objs (e.g. sharing/changing the current state of a web pg), which is becoming more common w modern web apps and mobile apps.
+
+However, `SOAP` may be dif to use for beginners or req long and complicated requests even for smaller queries, like basic `search` or `filter` queries. This is where the `REST` API std is more useful.
+#### REST
+The [Representational State Transfer (REST)](https://en.wikipedia.org/wiki/Representational_state_transfer) std shares data through the URL path (i.e. `search/users/1`), and usually returns the output in `JSON` format (i.e. `userid 1`).
+
+Unlike Query Params, `REST` APIs usually focus on pgs that expect one type of input passed directly through the URL path, w/o specifying its name or type. This is usually useful for queries like `search`, `sort`, or `filter`. This is why `REST` APIs usually break web app fn'ality into smaller APIs and util these smaller API requests to allow the web app to perform more advanced actions, making the web app more modular and scalable.
+
+Response to `REST` API requests are usually made in `JSON` format, and the frontend components are then dev'd to handle this response and render it properly. Other output formats for `REST` include `XML`, `x-www-form-urlencoded`, or even raw data. As seen previously in the `database` section, the following is an example of a `JSON` response to the `GET /category/posts` API request:
+```json
+{
+  "100001": {
+    "date": "01-01-2021",
+    "content": "Welcome to this web application."
+  },
+  "100002": {
+    "date": "02-01-2021",
+    "content": "This is the first post on this web app."
+  },
+  "100003": {
+    "date": "02-01-2021",
+    "content": "Reminder: Tomorrow is the ..."
+  }
+}
+```
+`REST` uses various HTTP methods to perform dif actions on the web app:
+- `GET` request to retrieve data
+- `POST` request to create data (non-idempotent)
+- `PUT` request to create or replace existing data ([idempotent](https://en.wikipedia.org/wiki/Idempotence))
+- `DELETE` request to rm data
+# Backend Vulnerabilities
+## Common Web Vulnerabilities
+While performing a pentest on an internally dev'd web app or if no public exploits are found for a public web app, several vulns can still be manually ID'd. Vulns caused by misconf's can also be uncovered, even in publicly avail web apps, since these types of vulns are not caused by the public version of the web app but by a misconf made by the devs. The below examples are some of the most common vuln types for web apps, part of [OWASP Top 10](https://owasp.org/www-project-top-ten/) vulns for web apps.
+### Broken Authentication/Access Control
+`Broken authentication` and `Broken Access Control` are among the most common and most dangerous vulns for web apps.
+
+`Broken auth'n` refers to vulns that atkrs to bypass auth'n fn's. (e.g. allowing an atkr to login w/o having a vaild set of creds or allow a normal user to become an admin w/o having the privs to do so).
+
+`Brokan Access Ctrl` refers to vulns that allow atkrs to access pgs and feats they should not have access to (e.g. a normal user gaining acess to the admin panel).
+
+For example, `College Management System 1.2` has a somple [Auth Bypass](https://www.exploit-db.com/exploits/47388) vuln that allows an atkr to login w/o having an acct, by inputting the following for the email field: ` or 0=0 #`, and using any passwd w it.
+### Malicious File Upload
+Another common way to gain ctrl o/ web apps is through uploading malicious scripts. If the web app has a file upload feat and does not properly validate the uploaded files, an atkr may upload a malicious script (e.g. a `PHP` script), which will allow the atkr to exec cmds on the remote server.
+
+Even though this is a basic vuln, many devs are not aware of these threats, so they do not properly check and validate uploaded files. Furthermore, some devs do perform checks and attempt to validate uploaded files, but these checks can often be bypassed, which would still allow the atkr to upload malicious scripts.
+
+For example, the WordPress Plugic `Responsive Thumbnail Slider 1.0` can be exploited to upload any arbitrary file, including malicious scripts, by uploading a file w a double ext (e.g. `shell.php.jpg`). There's even a [Metasploit Module](https://www.rapid7.com/db/modules/exploit/multi/http/wp_responsive_thumbnail_slider_upload/) that allows atkrs to exploit this vuln easily.
+### Command Injection
+Many web apps exec local OS cmds to perform certain prog's. e.g. a web app may install a plugin of an atkrs choosing by exec'g an OS cmd that downloads that plugin, using the plugin name provided. If not properly filtered and sanitized, atkrs may be able to inject another cmd to be exec'd alongside the originally intended cmd (e.g. as the plugin name), which allows them to directly exec cmds on the backend server and gain ctrl o/ it. This type of vuln is called [command injection](https://owasp.org/www-community/attacks/Command_Injection).
+
+This vuln is widespread, as devs may not properly sanitize user input or use weak tests to do so, allowing atkrs to bypass any checks or filtering put in place and exec their cmds.
+
+E.g. the WordPress Plugin `Plainview Activity Monitor 20161228` has a [vulnerability](https://www.exploit-db.com/exploits/45274) that allows atkrs to inj their command in the `ip` val, by simple adding `| COMMAND...` after the `ip` val.
+### SQL Injection (SQLi)
+Another v common vuln in web apps is a `SQL Injection` vuln. Similarly to a cmd inj vuln, this vuln may occur when the web app exec's a SQL query, including a val taken from user-supplied input
+
+E.g. the `databases` section demonstrated an example of how a web app would use user-input to search w/i a certain tbl, w the following line of code:
+`$query = "select * from users where name like '%$searchInput%'";`
+If the user input is not filtered and validated (as is the case w `cmd inj's`), an atkr may exec another SQL query alongside this query, which may eventually allow atkrs to take ctrl o/ the db and its hosting server.
+
+E.g. the same previous `College Management System 1.2` suffers from a SQLi [vuln](https://www.exploit-db.com/exploits/47388), in which an atkr can exec another `SQL` query that always returns `true`, meaning the atkr successfully auth'd, which allows the atkr to log in to the app. Atkrs can use the same vuln to retrieve data from the db or even gain ctrl o/ the hosting server.
+
+This career will see these vulns again and again while learning and real-world assessments. It is important to become familiar w each of these as even a basic understanding of each will give a leg up in any infosec realm. Later modules will cover each of these vulns in-depth.
+## Public Vulnerabilities
+The most critical backend component vulns are those that can be atk'd externally and can be leveraged to take ctrl o/ the backend server w/o needing local access to that server (i.e. external pentesting). These vulns are usually caused by coding mistakes made during the dev't of a web app's backend components. So, there is a wide variety of vuln types in this area, ranging from basic vulns that can be exploited w relative ease to sophisticated vulns req'g deep knowledge of the entire web app.
+### Public CVE
+As many orgs deploy web apps that are publicly used, like open-source and proprietary web apps, these web apps tend to be tested by many orgs and experts around the world. This leads to freq'ly uncovering a large number of vuln, most of which get patched and then shared publicly and assigned a [Common Vulnerabilities and Exposure (CVE)](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures) record and score.
+
+Many pentesters also make proof of concept exploits to test whether a certain public vuln can be exploited and usually make these exploits avail for public user, for testing and ed purposes. This makes searching for public exploits the v first step when pentesting web apps.
+> [!Tip]
+> The first step is to id the ver of the web app. This can be found in many locations, like the source code of the web app. For open source web apps, check the repo of the web app and id where the ver num is shown (e.g. in `version.php` pg), and then check the same pg on the target web app to confirm.
+
+Once the web app ver is id'd, search Google for public exploits for this ver of the web app. An online exploit db can also be used ( like [Exploit DB](https://www.exploit-db.com/), [Rapid7 DB](https://www.rapid7.com/db/), or [Vulnerability Lab](https://www.vulnerability-lab.com/)).
+
+Usually, the best exploits of interest have a CVE score of 8-10 or exploits that lead to `Remote Code Execution`. Other types of public exploits should also be considered of none of the above is avail.
+
+Furthermore, these vulns are not exclusive to web apps and apply to components util'd be the web app. If a web app uses external components (e.g. a plugin), search for vulns for these external components as well.
+### Common Vulnerability Scoring System (CVSS)
+The [Common Vulnerability Scoring System (CVSS)](https://en.wikipedia.org/wiki/Common_Vulnerability_Scoring_System) is an open-source industry std for assessing the severity of sec vulns. This scoring sys is often used as a std measurement for orgs and govs that need to produce accurate and consistent severity scores for their sys' vulns. This helps w the prioritization of resources and the response to a given threat.
+
+CVSS scores are based on a formula that uses several metrics: `Base`, `Temporal`, and `Environmental`. When calc'g the severity of a vuln using CVSS, the `Base` metrics produce a score ranging from 0-10, modded by applying `Temporal` and `Environmental` metrics. The [National Vulnerability Database (NVD)](https://nvd.nist.gov/) provides CVSS scores for almost all known, publicly disclosed vulns. At this time, the NVD only provides `Base` scores based upon a given vuln's inherent chars. The current scoring sys's in in place are CVSS v2 and CVSS v3. There are several dif's b/w the v2 and v2 sys's, namely changes to the `Base` and `Environmental` groups to acct for additional metrics. More info about the difs b/w the two scoring sys's can be found [here](https://www.balbix.com/insights/cvss-v2-vs-cvss-v3).
+
+CVSS scoring ratings differ slightly b/w v2 and v3 as can be seen in the following tbls:
+
+| **CVSS V2.0 Ratings** |                      |
+| --------------------- | -------------------- |
+| **Severity**          | **Base Score Range** |
+| Low                   | 0.0-3.9              |
+| Medium                | 4.0-6.9              |
+| High                  | 7.0-10.0             |
+
+|**CVSS V3.0 Ratings**|
+|---|---|
+|**Severity**|**Base Score Range**|
+|None|0.0|
+|Low|0.1-3.9|
+|Medium|4.0-6.9|
+|High|7.0-8.9|
+|Critical|9.0-10.0|
+The NVD does not factor in `Temporal` and `Environmental` metrics b/c the former can change o/ time dur to external events. The latter is a customized metric based on the potential impact of the vuln on a given org. The NVD provides a [CVSS v2 calculator](https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator) and a [CVSS v3 calculator](https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator) that orgs can use to factor additional risk from `Temporal` and `Environmental` data unique to them. The calcs are v interactive and can be used to fine-tune the CVSS score to our env. Move o/ each metric to read more about it and determine exactly how it applies to the org.
+
+>[!Excercise]
+>Play around w the CVSS calc and see how the various metrics can be adjusted to arrive at a given score.
+>Review some CVEs and attempt to arrive at the same CVSS score.
+>How does the CVSS score change when you apply `Temporal` and `Envirnmental` metrics?
+>[This handy guide](https://www.first.org/cvss/user-guide) is extremely useful for understanding v2 and v3 and how to use the calcs to arrive at a given score.
+### Backend Server Vulnerabilities
+Like public vulns for web apps, consider also looking for vulns for other backend components, like the backend server or the web server.
+
+The most critical vulns for backend components are found in web servers, as they are publicly accessible o/ `TCP`. An example of a well-known web server vuln is the `Shell-Shock`, which affected Apache web servers released during and b4 2014 and util'd `HTTP` requests to gain remote ctrl o/ the backend server.
+
+As for vulns in the backend server or the db, they are usually util'd after gaining local access to the backend server or backend network, which may be gained through `external` vulns or during internal pentesting. They are usually used to gain high priv access on the backend server/network or gain ctrl o/ other servers w/i the same network.
+
+Although not directly exploitable externally, these vulns are still critical and need to be patched to prot the entire web app from being compromised.
+# Next Steps
+This module demonstrated some, but by no means all, web app basics and taught the fundamentals of how a web app is built, how it works, and what dangers it can introduce into  a corporate env.
+
+It is important to take a hands-on approach to further develop an understanding and apply the topics taught in this module. It is recommended to review the material in combo w dev'g a small web app. Some next steps that can be taken are:
+
+| **Step** | **To-Do**                                                               |
+| -------- | ----------------------------------------------------------------------- |
+| `1.`     | Set up a VM with a web server                                           |
+| `2.`     | Create an `HTML` page                                                   |
+| `3.`     | Design it with `CSS`                                                    |
+| `4.`     | Add some simple functions with `JavaScript`                             |
+| `5.`     | Program a simple web application                                        |
+| `6.`     | Connect your web application to the database                            |
+| `7.`     | Experiment with APIs                                                    |
+| `8.`     | Test your application for various vulnerabilities and security holes    |
+| `9.`     | Try to adjust your code and configurations to close the vulnerabilities |
+Dev'g a small web app will provide a much deeper understanding of the structure and fn'y. Learning how to set up and mng such a web server, the db's role, and how the individual pieces of code are linked together is in invaluable experience.
+
+The `Web Requests` and `JavaScript Deobfuscation` Academy modules will help build on the knowledge presented in this module.
+
+The module `Hacking WordPress` and other similar modules related to `OWASP Top 10` (such as `SQL Injection Fundamentals`) are a great next step to get into pentesting web apps and learn more about web app vulns and exploitation. Finally, to apply what is taught in these modules, jump into atk'g some `Easy` boxes on [HackTheBox](https://www.hackthebox.eu/).

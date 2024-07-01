@@ -101,3 +101,10 @@ An email sec gateway flags a sus email sent to multiple employees w/i a co. The 
 This combo of factors raises significant red flags for the analyst. The recent reg date, hidden reg info, and sus hosting strongly suggest a phishing campaign. The analyst promptly alerts the co's IT department to block the domain and warns employees about the scam.
 
 Further investigation into the hosting provider and associated IP addr's may uncover additional phishing domains or infra the threat actor uses.
+### Scenario 2: Malware Analysis
+A sec researcher is analyzing a new strain of malware that has infected several sys's w/i a network. The malware comms w a remote server to rcv cmds and exfil stolen data. To gain insights into the treat actor's infra, the researcher performs a WHOIS lookup on the domain associated w the command-and-control (C2, or C&C) server, revealing the following info:
+- `Registrant`: The domain is reg'd to an individual using a free email service known for anonymity
+- `Location`: The registrant's addr is in a country w a high prevalence of cybercrime
+- `Registrar`: The domain was reg'd trough a registrar w a history of lax abuse policies
+Based on this info, the researcher concludes that the C&C server is likely hosted on a compromised or "bulletproof" server. The researcher then uses the WHOIS data to id the hosting provider and notify them of the malicious activity.
+### Scenario 3: Threat Intelligence Report

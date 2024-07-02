@@ -108,3 +108,65 @@ A sec researcher is analyzing a new strain of malware that has infected several 
 - `Registrar`: The domain was reg'd trough a registrar w a history of lax abuse policies
 Based on this info, the researcher concludes that the C&C server is likely hosted on a compromised or "bulletproof" server. The researcher then uses the WHOIS data to id the hosting provider and notify them of the malicious activity.
 ### Scenario 3: Threat Intelligence Report
+A cybersec firm tracks the activities of a sophisticated threat actor group known for targeting financial institutions. Analysts gather WHOIS data on multiple domains associated w the group's past campaigns to compile a comprehensive threat int report, uncovering the following patterns:
+- `Reg'tion Dates`: The domains were reg'd in clusters, often shortly b4 major atks
+- `Registrants`: The registrants use various aliases and fake id's
+- `Name Servers`: The domains often share the same name servers, suggesting a common infra
+- `Takedown History`: Many domains have been taken down after atks, indicating previous law enforcement or sec interventions
+These insights allow analysts to create a detailed prof of the threat actor's tactics, techniques, and procedures (TTPs). The report includes IoC's based on the WHOIS data, which other orgs can use to detect and block future arks.
+### Using WHOIS
+The simplest way to acces WHOIS data is through the `whois` cmd-line tool:
+```shell
+$ whois facebook.com
+
+   Domain Name: FACEBOOK.COM
+   Registry Domain ID: 2320948_DOMAIN_COM-VRSN
+   Registrar WHOIS Server: whois.registrarsafe.com
+   Registrar URL: http://www.registrarsafe.com
+   Updated Date: 2024-04-24T19:06:12Z
+   Creation Date: 1997-03-29T05:00:00Z
+   Registry Expiry Date: 2033-03-30T04:00:00Z
+   Registrar: RegistrarSafe, LLC
+   Registrar IANA ID: 3237
+   Registrar Abuse Contact Email: abusecomplaints@registrarsafe.com
+   Registrar Abuse Contact Phone: +1-650-308-7004
+   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited
+   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited
+   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited
+   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited
+   Name Server: A.NS.FACEBOOK.COM
+   Name Server: B.NS.FACEBOOK.COM
+   Name Server: C.NS.FACEBOOK.COM
+   Name Server: D.NS.FACEBOOK.COM
+   DNSSEC: unsigned
+   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/
+>>> Last update of whois database: 2024-06-01T11:24:10Z <<<
+
+[...]
+Registry Registrant ID:
+Registrant Name: Domain Admin
+Registrant Organization: Meta Platforms, Inc.
+[...]
+```
+The WHOIS output for `facebook.com` reveals several key details:
+1. `Domain Reg`:
+	- `Registrar`: RegistrarSafe, LLC
+	- `Creation Date`: 1997-03-29
+	- `Expiry Date`: 2033-03-30
+These details indicate that the domain is reg'd w RegistrarSafe, LLC, and has been active for a considerable period, suggesting its legitimacy and est'd online presence. The distant expiry date further reinforces its longevity.
+2. `Domain Owner`:
+	- `Registrant/Admin/Tech Org`: Meta Platforms, Inc
+	- `Registrant/Admin/Tech Content`: Domain Admin
+This info id's Meta Platforms, Inc as the org behind `facebook.com`, and "Domain Admin" as the point of contact for the domain-related matters. This is consistent w the expectation that Facebook, a prominent social media platform, is owned by Meta Platforms, Inc.
+3. `Domain Status`:
+	- `clientDeletedProhibited`, `clientTransferProhibited`, `clientUpdateProhibited`, `serverDeleteProhibited`, `serverTransferProhibited`, and `serverUpdateProhibited`
+These statuses indicate that the domain is prot'd against unauth changes, transfers, or deletions on both the client and server sides. This highlights a strong emphasis on sec and ctrl o/ the domain.
+4. `Name Servers`:
+	- `A.NS.FACEBOOK.COM`, `B.NS.FACEBOOK.COM`, `C.NS.FACEBOOK.COM`, `D.NS.FACEBOOK.COM`
+These name server are all w/i the `facebook.com` domain, suggesting that Meta Platforms, Inc manages its DNS infra. It is common practice for large org's to maintain ctrl and reliability o/ their DNS resolution.
+
+Overall, the WHOIS output for `facebook.com` aligns w expectations for a well-est'd and sec domain owned by a large org like Meta Platforms, Inc
+
+While the WHOIS record provides contact info for domain-related issues, it might not be directly helpful in id'ing individual employees or specific vulns. This highlights the need to combine WHOIS data w other reconnaissance techniques to understand the target's digital footprint comprehensively.
